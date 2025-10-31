@@ -1,21 +1,36 @@
 import 'package:flutter/material.dart';
 
 class AuthViewModel extends ChangeNotifier {
-  String? phoneNumber;
-  String? otp;
+  String? _phone;
+  String? _otp;
+  bool _isLoggedIn = false;
 
-  void setPhone(String value) {
-    phoneNumber = value;
+  String? get phone => _phone;
+  bool get isLoggedIn => _isLoggedIn;
+
+  void setPhone(String phone) {
+    _phone = phone;
     notifyListeners();
   }
 
-  void setOtp(String value) {
-    otp = value;
+  void setOtp(String otp) {
+    _otp = otp;
     notifyListeners();
   }
 
   Future<bool> verifyOtp() async {
+    // Simulate OTP verification (replace with your backend later)
     await Future.delayed(const Duration(seconds: 1));
-    return otp == "1234"; // mock success for now
+    if (_otp == '1234') {
+      _isLoggedIn = true;
+      notifyListeners();
+      return true;
+    }
+    return false;
+  }
+
+  void logout() {
+    _isLoggedIn = false;
+    notifyListeners();
   }
 }

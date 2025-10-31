@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:personaltrainer/features/home/home_shell.dart';
-import 'theme/theme_notifier.dart';
-
-// Screens
+import 'package:provider/provider.dart';
+import 'package:personaltrainer/theme/theme_notifier.dart';
+import 'features/auth/viewmodels/auth_viewmodel.dart';
+import 'features/auth/screens/login_screen.dart';
 import 'features/home/home_shell.dart';
-import 'features/workout/screens/workout_log_screen.dart';
 import 'features/workout/screens/select_split_screen.dart';
 import 'features/workout/screens/exercise_list_screen.dart';
-import 'core/models/exercise_model.dart';
 import 'features/settings/screens/settings_screen.dart';
 import 'features/subscription/screens/subscription_screen.dart';
 import 'features/subscription/screens/payment_success_screen.dart';
+import 'core/models/exercise_model.dart';
+import 'features/workout/screens/workout_log_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ThemeNotifier.loadSavedTheme();
-  runApp(const MyApp());
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthViewModel()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -23,6 +31,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<AuthViewModel>(context);
+
     return AnimatedBuilder(
       animation: themeNotifier,
       builder: (context, _) {
@@ -41,8 +51,8 @@ class MyApp extends StatelessWidget {
           ),
           themeMode: themeNotifier.themeMode,
 
-          // 🏠 Start at HomeShell (bottom navigation)
-          home: const HomeShell(),
+          // 🧠 Check login state
+          home: auth.isLoggedIn ? const HomeShell() : const LoginScreen(),
 
           routes: {
             '/select_split': (context) => const SelectSplitScreen(),
