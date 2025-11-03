@@ -11,7 +11,7 @@ class ExerciseListScreen extends StatelessWidget {
     Exercise(
       id: 'ex_bench',
       name: 'Barbell Bench Press',
-      muscleGroup: 'Chest',
+      muscleGroup: ['Chest'],
       equipment: 'Barbell',
       difficulty: 'Intermediate',
       description: 'A compound chest exercise targeting pectorals and triceps.',
@@ -24,7 +24,7 @@ class ExerciseListScreen extends StatelessWidget {
     Exercise(
       id: 'ex_row',
       name: 'Barbell Row',
-      muscleGroup: 'Back',
+      muscleGroup: ['Back'],
       equipment: 'Barbell',
       difficulty: 'Intermediate',
       description: 'A pulling exercise that strengthens the lats and rhomboids.',
@@ -37,7 +37,7 @@ class ExerciseListScreen extends StatelessWidget {
     Exercise(
       id: 'ex_squat',
       name: 'Back Squat',
-      muscleGroup: 'Legs',
+      muscleGroup: ['Legs'],
       equipment: 'Barbell',
       difficulty: 'Intermediate',
       description: 'Targets quads, glutes, and hamstrings.',

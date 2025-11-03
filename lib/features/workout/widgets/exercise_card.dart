@@ -6,7 +6,8 @@ class ExerciseCard extends StatelessWidget {
   final Exercise exercise;
   final VoidCallback? onTap;
 
-  const ExerciseCard({required this.exercise, this.onTap, Key? key}) : super(key: key);
+  const ExerciseCard({required this.exercise, this.onTap, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,13 +52,15 @@ class ExerciseCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 6),
 
-                    // ✅ Tags row (muscle group, equipment, difficulty)
+                    // ✅ Tags row (muscle groups, equipment, difficulty)
                     Wrap(
                       spacing: 6,
                       runSpacing: 6,
                       children: [
-                        if (exercise.muscleGroup.isNotEmpty)
-                          _tagChip(exercise.muscleGroup),
+                        // 🔹 Show all muscle groups as chips
+                        for (final group in exercise.muscleGroup)
+                          _tagChip(group),
+
                         if (exercise.equipment.isNotEmpty)
                           _tagChip(exercise.equipment),
                         _tagChip(exercise.difficulty),

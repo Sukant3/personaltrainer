@@ -6,6 +6,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:personaltrainer/features/exercise/screens/exercise_catalog_screen.dart';
 import 'package:personaltrainer/features/program/screens/programs_screen.dart';
 import 'package:personaltrainer/features/workout/screens/streak_screen.dart';
+import 'package:personaltrainer/features/workout/screens/streak_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -20,10 +21,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const darkBg = Color(0xFF0E0E10);
+    final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      backgroundColor: darkBg,
+      backgroundColor: colorScheme.surface,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
@@ -82,7 +83,7 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 28),
 
               // ---------------- PROGRESS & ANALYTICS ----------------
-              _ProgressSection(),
+              const _ProgressSection(),
 
               const SizedBox(height: 28),
 
@@ -150,9 +151,11 @@ class _ProgressSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xFF1C1C1E),
+        color: colorScheme.secondaryContainer.withOpacity(0.2),
         borderRadius: BorderRadius.circular(18),
       ),
       padding: const EdgeInsets.all(16),
@@ -163,10 +166,10 @@ class _ProgressSection extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 "Recent Activity",
                 style: TextStyle(
-                  color: Colors.white,
+                  color: colorScheme.onSurface,
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                 ),
@@ -175,8 +178,7 @@ class _ProgressSection extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (_) => const StreakScreen()),
+                    MaterialPageRoute(builder: (_) => const StreakScreen()),
                   );
                 },
                 child: Container(
@@ -185,7 +187,8 @@ class _ProgressSection extends StatelessWidget {
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
                       colors: [
-                        Color.fromARGB(255, 133, 17, 159), Color.fromARGB(255, 119, 26, 170)
+                        Color(0xFF85119F),
+                        Color(0xFF771AAA),
                       ],
                     ),
                     borderRadius: BorderRadius.circular(12),
@@ -210,23 +213,27 @@ class _ProgressSection extends StatelessWidget {
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Text(
                     "Steps",
-                    style: TextStyle(color: Colors.white70, fontSize: 14),
+                    style: TextStyle(
+                        color: colorScheme.onSurface.withOpacity(0.7),
+                        fontSize: 14),
                   ),
-                  SizedBox(height: 6),
+                  const SizedBox(height: 6),
                   Text(
                     "3,246 steps",
                     style: TextStyle(
-                      color: Colors.white,
+                      color: colorScheme.onSurface,
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
                     ),
                   ),
                   Text(
                     "2.51 km | 123.2 kcal",
-                    style: TextStyle(color: Colors.white38, fontSize: 13),
+                    style: TextStyle(
+                        color: colorScheme.onSurface.withOpacity(0.4),
+                        fontSize: 13),
                   ),
                 ],
               ),
@@ -247,11 +254,13 @@ class _ProgressSection extends StatelessWidget {
                           getTitlesWidget: (v, _) {
                             const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
                             return Padding(
-                              padding: EdgeInsets.only(top: 6),
+                              padding: const EdgeInsets.only(top: 6),
                               child: Text(
                                 days[v.toInt() % 7],
-                                style: const TextStyle(
-                                    color: Colors.white54, fontSize: 12),
+                                style: TextStyle(
+                                    color: colorScheme.onSurface
+                                        .withOpacity(0.5),
+                                    fontSize: 12),
                               ),
                             );
                           },
@@ -263,7 +272,7 @@ class _ProgressSection extends StatelessWidget {
                       (i) => BarChartGroupData(x: i, barRods: [
                         BarChartRodData(
                           toY: (4 + i % 4).toDouble(),
-                          color: Colors.yellowAccent,
+                          color: Colors.amber,
                           width: 10,
                           borderRadius: BorderRadius.circular(4),
                         )
@@ -311,11 +320,13 @@ class _ProgressMiniCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Expanded(
       child: Container(
         margin: const EdgeInsets.only(right: 12),
         decoration: BoxDecoration(
-          color: const Color(0xFF2A2A2D),
+          color: colorScheme.secondaryContainer.withOpacity(0.3),
           borderRadius: BorderRadius.circular(14),
         ),
         padding: const EdgeInsets.all(14),
@@ -328,8 +339,8 @@ class _ProgressMiniCard extends StatelessWidget {
                 const SizedBox(width: 6),
                 Text(
                   title,
-                  style: const TextStyle(
-                      color: Colors.white70,
+                  style: TextStyle(
+                      color: colorScheme.onSurface.withOpacity(0.7),
                       fontWeight: FontWeight.w500,
                       fontSize: 13),
                 ),
@@ -338,8 +349,8 @@ class _ProgressMiniCard extends StatelessWidget {
             const SizedBox(height: 10),
             Text(
               value,
-              style: const TextStyle(
-                  color: Colors.white,
+              style: TextStyle(
+                  color: colorScheme.onSurface,
                   fontWeight: FontWeight.bold,
                   fontSize: 16),
             ),
@@ -358,13 +369,17 @@ class _SectionHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           title,
-          style: const TextStyle(
-              color: Colors.white, fontSize: 20, fontWeight: FontWeight.w700),
+          style: TextStyle(
+              color: colorScheme.onSurface,
+              fontSize: 20,
+              fontWeight: FontWeight.w700),
         ),
         GestureDetector(
           onTap: onViewAll,
@@ -372,7 +387,7 @@ class _SectionHeader extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
             decoration: BoxDecoration(
               gradient: const LinearGradient(
-                colors: [Color.fromARGB(255, 133, 17, 159), Color.fromARGB(255, 119, 26, 170)],
+                colors: [Color(0xFF85119F), Color(0xFF771AAA)],
               ),
               borderRadius: BorderRadius.circular(12),
             ),
@@ -415,16 +430,22 @@ class _CategoryChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
-        color: isActive ? const Color.fromARGB(255, 133, 17, 159) : Colors.white10,
+        color: isActive
+            ? const Color(0xFF85119F)
+            : colorScheme.secondaryContainer.withOpacity(0.2),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Text(
         text,
         style: TextStyle(
-          color: isActive ? Colors.white : Colors.white70,
+          color: isActive
+              ? Colors.white
+              : colorScheme.onSurface.withOpacity(0.8),
           fontWeight: FontWeight.w500,
         ),
       ),
@@ -440,6 +461,8 @@ class _ImageCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return SizedBox(
       height: 160,
       child: ListView.separated(
@@ -463,7 +486,7 @@ class _ImageCarousel extends StatelessWidget {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Colors.black.withOpacity(0.7),
+                        Colors.black.withOpacity(0.6),
                         Colors.transparent
                       ],
                       begin: Alignment.bottomCenter,
@@ -477,10 +500,16 @@ class _ImageCarousel extends StatelessWidget {
                   right: 14,
                   child: Text(
                     titles[i],
-                    style: const TextStyle(
-                      color: Colors.white,
+                    style: TextStyle(
+                      color: colorScheme.onSurface,
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
+                      shadows: const [
+                        Shadow(
+                            color: Colors.black45,
+                            offset: Offset(0, 1),
+                            blurRadius: 4)
+                      ],
                     ),
                   ),
                 ),
@@ -492,3 +521,6 @@ class _ImageCarousel extends StatelessWidget {
     );
   }
 }
+
+
+

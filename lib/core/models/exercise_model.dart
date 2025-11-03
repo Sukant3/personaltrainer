@@ -3,7 +3,7 @@
 class Exercise {
   final String id;
   final String name;
-  final String muscleGroup;
+  final List<String> muscleGroup; // ✅ this stays a List<String>
   final String equipment;
   final String difficulty;
   final String description;
@@ -31,7 +31,10 @@ class Exercise {
     return Exercise(
       id: json['id'] ?? '',
       name: json['name'] ?? '',
-      muscleGroup: json['muscleGroup'] ?? '',
+      // ✅ Correctly handle muscleGroup as a list
+      muscleGroup: json['muscleGroup'] != null
+          ? List<String>.from(json['muscleGroup'])
+          : [],
       equipment: json['equipment'] ?? '',
       difficulty: json['difficulty'] ?? 'Beginner',
       description: json['description'] ?? '',
@@ -46,6 +49,7 @@ class Exercise {
   Map<String, dynamic> toJson() => {
         'id': id,
         'name': name,
+        // ✅ Save list properly
         'muscleGroup': muscleGroup,
         'equipment': equipment,
         'difficulty': difficulty,

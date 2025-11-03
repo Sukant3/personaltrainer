@@ -39,7 +39,7 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
     final benchPress = Exercise(
       id: 'e1',
       name: 'Bench Press',
-      muscleGroup: 'Chest',
+      muscleGroup: ['Chest'],
       equipment: 'Barbell',
       difficulty: 'Intermediate',
       description: 'Builds chest, triceps, and shoulders.',
@@ -49,7 +49,7 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
     final squat = Exercise(
       id: 'e2',
       name: 'Squat',
-      muscleGroup: 'Legs',
+      muscleGroup: ['Legs'],
       equipment: 'Barbell',
       difficulty: 'Intermediate',
       description: 'Develops lower body strength.',
@@ -59,7 +59,7 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
     final deadlift = Exercise(
       id: 'e3',
       name: 'Deadlift',
-      muscleGroup: 'Back',
+      muscleGroup: ['Back'],
       equipment: 'Barbell',
       difficulty: 'Advanced',
       description: 'Builds total-body strength, especially posterior chain.',
@@ -69,7 +69,7 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
     final pullUp = Exercise(
       id: 'e4',
       name: 'Pull Up',
-      muscleGroup: 'Back',
+      muscleGroup: ['Back'],
       equipment: 'Bodyweight',
       difficulty: 'Advanced',
       description: 'Targets lats and arms.',
@@ -79,7 +79,7 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
     final overheadPress = Exercise(
       id: 'e5',
       name: 'Shoulder Press',
-      muscleGroup: 'Shoulders',
+      muscleGroup: ['Shoulders'],
       equipment: 'Dumbbell',
       difficulty: 'Intermediate',
       description: 'Develops shoulder strength and stability.',
@@ -89,7 +89,7 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
     final curl = Exercise(
       id: 'e6',
       name: 'Dumbbell Curl',
-      muscleGroup: 'Biceps',
+      muscleGroup: ['Biceps'],
       equipment: 'Dumbbell',
       difficulty: 'Beginner',
       description: 'Isolates the biceps for arm strength.',
@@ -99,7 +99,7 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
     final plank = Exercise(
       id: 'e7',
       name: 'Plank',
-      muscleGroup: 'Core',
+      muscleGroup: ['Core'],
       equipment: 'Bodyweight',
       difficulty: 'Intermediate',
       description: 'Builds core endurance and stability.',
@@ -109,7 +109,7 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
     final lunges = Exercise(
       id: 'e8',
       name: 'Lunges',
-      muscleGroup: 'Legs',
+      muscleGroup: ['Legs'],
       equipment: 'Bodyweight',
       difficulty: 'Intermediate',
       description: 'Improves leg balance and stability.',
@@ -119,7 +119,7 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
     final tricepDip = Exercise(
       id: 'e9',
       name: 'Tricep Dips',
-      muscleGroup: 'Triceps',
+      muscleGroup: ['Triceps'],
       equipment: 'Bench',
       difficulty: 'Intermediate',
       description: 'Strengthens triceps and shoulders.',
@@ -129,7 +129,7 @@ class _ProgramsScreenState extends State<ProgramsScreen> {
     final mountainClimbers = Exercise(
       id: 'e10',
       name: 'Mountain Climbers',
-      muscleGroup: 'Core',
+      muscleGroup: ['Core'],
       equipment: 'Bodyweight',
       difficulty: 'Intermediate',
       description: 'Cardio move engaging core and legs.',

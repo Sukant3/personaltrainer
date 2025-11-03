@@ -36,7 +36,7 @@ class _ProgramEditorScreenState extends State<ProgramEditorScreen> {
     Exercise(
       id: 'e1',
       name: 'Bench Press',
-      muscleGroup: 'Chest',
+      muscleGroup: ['Chest'],
       equipment: 'Barbell',
       difficulty: 'Intermediate',
       description: '',
@@ -46,7 +46,7 @@ class _ProgramEditorScreenState extends State<ProgramEditorScreen> {
     Exercise(
       id: 'e2',
       name: 'Deadlift',
-      muscleGroup: 'Back',
+      muscleGroup: ['Back'],
       equipment: 'Barbell',
       difficulty: 'Advanced',
       description: '',
@@ -56,7 +56,7 @@ class _ProgramEditorScreenState extends State<ProgramEditorScreen> {
     Exercise(
       id: 'e3',
       name: 'Squat',
-      muscleGroup: 'Legs',
+      muscleGroup: ['Legs'],
       equipment: 'Barbell',
       difficulty: 'Intermediate',
       description: '',
@@ -66,7 +66,7 @@ class _ProgramEditorScreenState extends State<ProgramEditorScreen> {
     Exercise(
       id: 'e4',
       name: 'Overhead Press',
-      muscleGroup: 'Shoulders',
+      muscleGroup: ['Shoulders'],
       equipment: 'Barbell',
       difficulty: 'Intermediate',
       description: '',
@@ -76,7 +76,7 @@ class _ProgramEditorScreenState extends State<ProgramEditorScreen> {
     Exercise(
       id: 'e5',
       name: 'Barbell Row',
-      muscleGroup: 'Back',
+      muscleGroup: ['Back'],
       equipment: 'Barbell',
       difficulty: 'Intermediate',
       description: '',
