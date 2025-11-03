@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:personaltrainer/features/auth/screens/otp_screen.dart';
+import 'package:personaltrainer/features/auth/screens/signup_screen.dart';
 import 'package:personaltrainer/features/auth/viewmodels/auth_viewmodel.dart';
+import 'package:personaltrainer/features/home/home_shell.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -11,26 +12,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController _phoneController = TextEditingController();
-  bool isButtonEnabled = false;
-
-  @override
-  void initState() {
-    super.initState();
-
-    // Listen for phone number input changes
-    _phoneController.addListener(() {
-      setState(() {
-        isButtonEnabled = _phoneController.text.trim().length == 10;
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-    _phoneController.dispose();
-    super.dispose();
-  }
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -43,31 +27,26 @@ class _LoginScreenState extends State<LoginScreen> {
           width: double.infinity,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
+              colors: [Color(0xFF1A132F), Color(0xFF120B23)],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [
-                Color(0xFF1A132F),
-                Color(0xFF120B23),
-              ],
             ),
           ),
           child: Column(
             children: [
               const SizedBox(height: 60),
-
-              // Header Illustration
+              // 🏋️ Fitness Illustration
               Expanded(
                 flex: 3,
                 child: Center(
                   child: Image.asset(
-                    "assets/images/fitness.png", // replace with your image
-                    height: 300,
+                    "assets/images/fitness.png",
+                    height: 280,
                     fit: BoxFit.contain,
                   ),
                 ),
               ),
-
-              // Login Card Section
+              // Login Form
               Expanded(
                 flex: 4,
                 child: Container(
@@ -93,76 +72,96 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(height: 10),
                       Text(
                         "Login to continue your fitness journey",
-                        style: TextStyle(
-                          color: Colors.grey.shade400,
-                          fontSize: 15,
-                        ),
+                        style: TextStyle(color: Colors.grey.shade400, fontSize: 15),
                       ),
                       const SizedBox(height: 30),
-
-                      // Phone Field
+                      // Email Field
                       TextField(
-                        controller: _phoneController,
-                        maxLength: 10,
+                        controller: _emailController,
                         style: const TextStyle(color: Colors.white),
                         decoration: InputDecoration(
-                          counterText: "", // hides counter below field
                           filled: true,
                           fillColor: const Color(0xFF2C2C3E),
-                          labelText: "Phone Number",
-                          labelStyle:
-                              TextStyle(color: Colors.grey.shade400),
-                          prefixIcon: const Icon(
-                            Icons.phone,
-                            color: Colors.purpleAccent,
-                          ),
+                          labelText: "Email",
+                          labelStyle: TextStyle(color: Colors.grey.shade400),
+                          prefixIcon: const Icon(Icons.email, color: Colors.purpleAccent),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(14),
                             borderSide: BorderSide.none,
                           ),
                         ),
-                        keyboardType: TextInputType.phone,
+                        keyboardType: TextInputType.emailAddress,
+                      ),
+                      const SizedBox(height: 20),
+                      // Password Field
+                      TextField(
+                        controller: _passwordController,
+                        obscureText: true,
+                        style: const TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: const Color(0xFF2C2C3E),
+                          labelText: "Password",
+                          labelStyle: TextStyle(color: Colors.grey.shade400),
+                          prefixIcon: const Icon(Icons.lock, color: Colors.purpleAccent),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(14),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
                       ),
                       const SizedBox(height: 30),
-
-                      // Login Button (only active when valid)
+                      // Login Button
                       SizedBox(
                         width: double.infinity,
                         height: 55,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: isButtonEnabled
-                                ? const Color(0xFF7A1CAC)
-                                : Colors.grey.shade700,
+                            backgroundColor: const Color(0xFF7A1CAC),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(14),
                             ),
-                            elevation: isButtonEnabled ? 6 : 0,
+                            elevation: 6,
                             shadowColor: Colors.purpleAccent.withOpacity(0.4),
                           ),
-                          onPressed: isButtonEnabled
-                              ? () {
-                                  auth.setPhone(_phoneController.text.trim());
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => const OtpScreen()),
-                                  );
-                                }
-                              : null,
-                          child: const Text(
-                            "Send OTP",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
+                          onPressed: _isLoading
+                              ? null
+                              : () async {
+                                  setState(() => _isLoading = true);
+                                  try {
+                                    await auth.signIn(
+                                      _emailController.text.trim(),
+                                      _passwordController.text.trim(),
+                                    );
+                                    if (context.mounted) {
+                                      Navigator.pushAndRemoveUntil(
+                                        context,
+                                        MaterialPageRoute(builder: (_) => const HomeShell()),
+                                        (route) => false,
+                                      );
+                                    }
+                                  } catch (e) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text("Login failed: ${e.toString()}")),
+                                    );
+                                  } finally {
+                                    if (mounted) setState(() => _isLoading = false);
+                                  }
+                                },
+                          child: _isLoading
+                              ? const CircularProgressIndicator(color: Colors.white)
+                              : const Text(
+                                  "Login",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
                         ),
                       ),
                       const SizedBox(height: 15),
-
-                      // Bottom Links
+                      // Sign up link
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -171,9 +170,14 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: TextStyle(color: Colors.grey.shade400),
                           ),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (_) => const SignUpScreen()),
+                              );
+                            },
                             child: const Text(
-                              "Create one",
+                              "Sign up",
                               style: TextStyle(
                                 color: Colors.purpleAccent,
                                 fontWeight: FontWeight.bold,

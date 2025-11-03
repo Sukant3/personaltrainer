@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:personaltrainer/features/exercise/screens/exercise_catalog_screen.dart';
 import 'package:personaltrainer/features/program/screens/programs_screen.dart';
-
-import 'package:personaltrainer/features/workout/screens/streak_screen.dart'; // add your screen path
+import 'package:personaltrainer/features/workout/screens/streak_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+
+  Future<String> _fetchUserName() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return 'User';
+
+    final doc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+    return doc.data()?['name'] ?? 'User';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,44 +32,51 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // ---------------- PROFILE HEADER ----------------
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
+              FutureBuilder<String>(
+                future: _fetchUserName(),
+                builder: (context, snapshot) {
+                  final userName = snapshot.data ?? "Loading...";
+
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const CircleAvatar(
-                        radius: 24,
-                        backgroundImage: AssetImage('assets/images/profile.jpg'),
-                      ),
-                      const SizedBox(width: 12),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            "Hi, Sukant",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600,
-                            ),
+                      Row(
+                        children: [
+                          const CircleAvatar(
+                            radius: 24,
+                            backgroundImage: AssetImage('assets/images/profile.jpg'),
                           ),
-                          Text(
-                            "Welcome Back!",
-                            style: TextStyle(
-                              color: Colors.white54,
-                              fontSize: 14,
-                            ),
+                          const SizedBox(width: 12),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Hi, $userName",
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              const Text(
+                                "Welcome Back!",
+                                style: TextStyle(
+                                  color: Colors.white54,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
+                      IconButton(
+                        icon: const Icon(Icons.notifications_none_rounded,
+                            color: Colors.white, size: 26),
+                        onPressed: () {},
+                      ),
                     ],
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.notifications_none_rounded,
-                        color: Colors.white, size: 26),
-                    onPressed: () {},
-                  ),
-                ],
+                  );
+                },
               ),
 
               const SizedBox(height: 28),

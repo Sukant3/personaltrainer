@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
 import 'package:personaltrainer/theme/theme_notifier.dart';
 import 'features/auth/viewmodels/auth_viewmodel.dart';
 import 'features/auth/screens/login_screen.dart';
@@ -14,6 +17,12 @@ import 'features/workout/screens/workout_log_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // ✅ Initialize Firebase with generated options
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   await ThemeNotifier.loadSavedTheme();
 
   runApp(
@@ -42,18 +51,16 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             useMaterial3: true,
             brightness: Brightness.light,
-            colorSchemeSeed: Colors.blue,
+            colorSchemeSeed: const Color(0xFF7A1CAC), // Purple accent
           ),
           darkTheme: ThemeData(
             useMaterial3: true,
             brightness: Brightness.dark,
-            colorSchemeSeed: Colors.blue,
+            colorSchemeSeed: const Color(0xFF7A1CAC),
           ),
           themeMode: themeNotifier.themeMode,
-
-          // 🧠 Check login state
+          // ✅ If user is logged in → home, else → login screen
           home: auth.isLoggedIn ? const HomeShell() : const LoginScreen(),
-
           routes: {
             '/select_split': (context) => const SelectSplitScreen(),
             '/exercises': (context) => const ExerciseListScreen(),
@@ -61,8 +68,6 @@ class MyApp extends StatelessWidget {
             '/subscription': (context) => const SubscriptionScreen(),
             '/payment_success': (context) => const PaymentSuccessScreen(),
           },
-
-          // Dynamic route for workout log (with arguments)
           onGenerateRoute: (settings) {
             if (settings.name == '/workout_log') {
               final exercise = settings.arguments as Exercise;
