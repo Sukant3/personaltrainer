@@ -301,12 +301,26 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
                     shadowColor: purple.withOpacity(0.4),
                   ),
                 ),
-                Column(
-                  children: const [
-                    Icon(Icons.timer, size: 28),
-                    SizedBox(height: 4),
-                    Text('Rest'),
-                  ],
+                GestureDetector(
+                  onTap: () {
+                    HapticFeedback.selectionClick();
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                       useSafeArea: true,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                      ),
+                      builder: (_) => const RestTimerModal(initialSeconds: 60),
+                    );
+                  },
+                  child: Column(
+                    children: const [
+                      Icon(Icons.timer, size: 28),
+                      SizedBox(height: 4),
+                      Text('Rest'),
+                    ],
+                  ),
                 ),
               ],
             ),

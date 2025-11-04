@@ -51,53 +51,10 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     ),
 
     // --- Main Exercises ---
-    // Exercise(
-    //   id: '1',
-    //   name: 'Push Up',
-    //   muscleGroup: 'Chest',
-    //   equipment: 'Bodyweight',
-    //   difficulty: 'Beginner',
-    //   description:
-    //       'A bodyweight exercise that targets chest, shoulders, and triceps.',
-    //   cues:
-    //       'Keep your body straight, core tight, and lower until elbows are 90°.',
-    //   mediaUrl: 'assets/images/pushup.gif',
-    // ),
-    // Exercise(
-    //   id: '2',
-    //   name: 'Dumbbell Curl',
-    //   muscleGroup: 'Biceps',
-    //   equipment: 'Dumbbell',
-    //   difficulty: 'Beginner',
-    //   description:
-    //       'Isolates and strengthens the biceps with controlled arm curls.',
-    //   cues: 'Keep elbows close to your torso and lift dumbbells slowly.',
-    //   mediaUrl: 'assets/images/Dumbellcrul.gif',
-    // ),
-    // Exercise(
-    //   id: '3',
-    //   name: 'Squat',
-    //   muscleGroup: ['Legs'],
-    //   equipment: 'Bodyweight',
-    //   difficulty: 'Beginner',
-    //   description: 'Builds strength in quadriceps, glutes, and hamstrings.',
-    //   cues: 'Keep knees behind toes, chest up, and back straight.',
-    //   mediaUrl: 'assets/images/sqat.gif',
-    // ),
-    // Exercise(
-    //   id: '4',
-    //   name: 'Lunges',
-    //   muscleGroup: ['Legs'],
-    //   equipment: 'Bodyweight',
-    //   difficulty: 'Intermediate',
-    //   description: 'Improves leg balance and unilateral strength.',
-    //   cues: 'Step forward, bend both knees to 90°, and push back to start.',
-    //   mediaUrl: 'assets/images/lunges.gif',
-    // ),
     Exercise(
       id: '101',
       name: 'Barbell Bench Press (Flat)',
-      muscleGroup: ['Push'],
+      muscleGroup: ['Push','Chest'],
       equipment: 'Barbell, Bench',
       difficulty: 'Intermediate',
       description: 'A foundational movement for building overall chest mass and strength.',
@@ -107,7 +64,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '102',
       name: 'Incline Dumbbell Press',
-      muscleGroup: ['Push'],
+      muscleGroup: ['Push','Chest'],
       equipment: 'Dumbbells, Incline Bench',
       difficulty: 'Intermediate',
       description: 'Targets the upper chest (clavicular head) for shape and density.',
@@ -117,7 +74,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '103',
       name: 'Push-Ups (Standard)',
-      muscleGroup: ['Push'],
+      muscleGroup: ['Push','Chest'],
       equipment: 'Bodyweight',
       difficulty: 'Beginner',
       description: 'Effective bodyweight exercise for chest, shoulders, and triceps.',
@@ -127,7 +84,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '104',
       name: 'Cable Crossovers (Mid)',
-      muscleGroup: ['Push'],
+      muscleGroup: ['Push','Chest'],
       equipment: 'Cable Machine',
       difficulty: 'Intermediate',
       description: 'Isolates the chest muscles, focusing on the inner contraction and stretch.',
@@ -137,7 +94,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '105',
       name: 'Machine Chest Press',
-      muscleGroup: ['Push'],
+      muscleGroup: ['Push','Chest'],
       equipment: 'Machine',
       difficulty: 'Beginner',
       description: 'A stable press that allows for maximum isolation and less stabilizer involvement.',
@@ -147,7 +104,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '106',
       name: 'Chest Dips',
-      muscleGroup: ['Push'],
+      muscleGroup: ['Push','Chest'],
       equipment: 'Dip Station',
       difficulty: 'Advanced',
       description: 'A compound bodyweight movement focusing on the lower chest and triceps.',
@@ -159,7 +116,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '107',
       name: 'Overhead Press (Barbell Standing)',
-      muscleGroup: ['Push'],
+      muscleGroup: ['Push','Shoulders'],
       equipment: 'Barbell',
       difficulty: 'Advanced',
       description: 'Develops overall shoulder strength and stability, particularly the anterior deltoids.',
@@ -169,7 +126,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '108',
       name: 'Dumbbell Lateral Raises',
-      muscleGroup: ['Push'],
+      muscleGroup: ['Push','Shoulders'],
       equipment: 'Dumbbells',
       difficulty: 'Intermediate',
       description: 'Isolates the medial (side) deltoids for wider shoulders.',
@@ -179,7 +136,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '109',
       name: 'Dumbbell Front Raises',
-      muscleGroup: ['Push'],
+      muscleGroup: ['Push','Shoulders'],
       equipment: 'Dumbbells',
       difficulty: 'Intermediate',
       description: 'Targets the anterior (front) deltoids.',
@@ -191,7 +148,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '110',
       name: 'Triceps Pushdowns (Rope)',
-      muscleGroup: ['Push'],
+      muscleGroup: ['Push','Triceps'],
       equipment: 'Cable Machine',
       difficulty: 'Beginner',
       description: 'A great isolation movement to target all three heads of the triceps.',
@@ -201,7 +158,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '111',
       name: 'Skull Crushers (EZ Bar)',
-      muscleGroup: ['Push'],
+      muscleGroup: ['Push','Triceps'],
       equipment: 'Barbell, Bench',
       difficulty: 'Advanced',
       description: 'Effectively targets the long head of the triceps for mass.',
@@ -211,7 +168,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '112',
       name: 'Overhead Triceps Extension (Dumbbell)',
-      muscleGroup: ['Push'],
+      muscleGroup: ['Push','Triceps'],
       equipment: 'Dumbbell',
       difficulty: 'Intermediate',
       description: 'Excellent for maximizing the stretch and growth of the triceps long head.',
@@ -225,7 +182,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '201',
       name: 'Lat Pulldowns (Wide Grip)',
-      muscleGroup: ['Pull'],
+      muscleGroup: ['Pull','Back (Lats & Vertical)'],
       equipment: 'Cable Machine',
       difficulty: 'Beginner',
       description: 'Primary exercise for developing back width (lats).',
@@ -235,7 +192,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '202',
       name: 'Pull-Ups (Overhand)',
-      muscleGroup: ['Pull'],
+      muscleGroup: ['Pull','Back (Lats & Vertical)'],
       equipment: 'Pull-Up Bar',
       difficulty: 'Advanced',
       description: 'The definitive bodyweight exercise for maximizing back width and relative strength.',
@@ -245,7 +202,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '203',
       name: 'Chin-Ups (Underhand)',
-      muscleGroup: ['Pull'],
+      muscleGroup: ['Pull','Back (Lats & Vertical)'],
       equipment: 'Pull-Up Bar',
       difficulty: 'Intermediate',
       description: 'Similar to pull-ups, but heavily recruits the biceps and lower lats.',
@@ -257,7 +214,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '204',
       name: 'Barbell Rows (Bent-Over)',
-      muscleGroup: ['Pull'],
+      muscleGroup: ['Pull','Back (Mid-Back & Horizontal)'],
       equipment: 'Barbell',
       difficulty: 'Advanced',
       description: 'Builds thickness and density across the entire back, targeting the mid-back and lats.',
@@ -267,7 +224,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '205',
       name: 'Single-Arm Dumbbell Row',
-      muscleGroup: ['Pull'],
+      muscleGroup: ['Pull','Back (Mid-Back & Horizontal)'],
       equipment: 'Dumbbell, Bench',
       difficulty: 'Intermediate',
       description: 'Helps correct muscle imbalances between the left and right side of the back.',
@@ -277,7 +234,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '206',
       name: 'Seated Cable Rows',
-      muscleGroup: ['Pull'],
+      muscleGroup: ['Pull','Back (Mid-Back & Horizontal)'],
       equipment: 'Cable Machine',
       difficulty: 'Beginner',
       description: 'Excellent for isolating the mid-back and improving posture.',
@@ -287,7 +244,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '207',
       name: 'Shrugs (Dumbbell)',
-      muscleGroup: ['Pull'],
+      muscleGroup: ['Pull','Back (Mid-Back & Horizontal)'],
       equipment: 'Dumbbells',
       difficulty: 'Beginner',
       description: 'Directly targets the trapezius muscles (traps).',
@@ -299,7 +256,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '208',
       name: 'Barbell Curls',
-      muscleGroup: ['Pull'],
+      muscleGroup: ['Pull','Biceps'],
       equipment: 'Barbell',
       difficulty: 'Intermediate',
       description: 'A mass builder for the entire biceps muscle.',
@@ -309,7 +266,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '209',
       name: 'Hammer Curls',
-      muscleGroup: ['Pull'],
+      muscleGroup: ['Pull','Biceps'],
       equipment: 'Dumbbells',
       difficulty: 'Beginner',
       description: 'Works the biceps, brachialis (arm thickness), and forearm strength.',
@@ -319,7 +276,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '210',
       name: 'Preacher Curls',
-      muscleGroup: ['Pull'],
+      muscleGroup: ['Pull','Biceps'],
       equipment: 'Preacher Bench, Barbell/Dumbbell',
       difficulty: 'Intermediate',
       description: 'Forces strict form, isolating the biceps for peak development.',
@@ -331,7 +288,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '211',
       name: 'Face Pulls',
-      muscleGroup: ['Pull'],
+      muscleGroup: ['Pull','Rear Deltoids'],
       equipment: 'Cable Machine',
       difficulty: 'Intermediate',
       description: 'Crucial for shoulder health, targeting the rear delts and rotator cuff.',
@@ -341,7 +298,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '212',
       name: 'Dumbbell Rear Delt Flyes (Bent-Over)',
-      muscleGroup: ['Pull'],
+      muscleGroup: ['Pull','Rear Deltoids'],
       equipment: 'Dumbbells',
       difficulty: 'Intermediate',
       description: 'Isolates the posterior (rear) deltoids.',
@@ -355,7 +312,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '301',
       name: 'Barbell Back Squats',
-      muscleGroup: ['Legs'],
+      muscleGroup: ['Legs','Quads & Glutes'],
       equipment: 'Barbell, Squat Rack',
       difficulty: 'Advanced',
       description: 'The king of all exercises, building strength and size in the quads, glutes, and core.',
@@ -365,7 +322,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '302',
       name: 'Front Squats',
-      muscleGroup: ['Legs'],
+      muscleGroup: ['Legs','Quads & Glutes'],
       equipment: 'Barbell, Squat Rack',
       difficulty: 'Advanced',
       description: 'Emphasizes the quads and core stability due to the front rack position.',
@@ -375,7 +332,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '303',
       name: 'Goblet Squats',
-      muscleGroup: ['Legs'],
+      muscleGroup: ['Legs','Quads & Glutes'],
       equipment: 'Dumbbell or Kettlebell',
       difficulty: 'Beginner',
       description: 'Great for learning squat form and improving mobility.',
@@ -385,7 +342,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '304',
       name: 'Lunges (Forward)',
-      muscleGroup: ['Legs'],
+      muscleGroup: ['Legs','Quads & Glutes'],
       equipment: 'Bodyweight or Dumbbell',
       difficulty: 'Intermediate',
       description: 'Improves unilateral leg strength, balance, and core stability.',
@@ -395,7 +352,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '305',
       name: 'Bulgarian Split Squats',
-      muscleGroup: ['Legs'],
+      muscleGroup: ['Legs','Quads & Glutes'],
       equipment: 'Dumbbells, Bench',
       difficulty: 'Advanced',
       description: 'An intense single-leg movement, maximizing quad and glute hypertrophy.',
@@ -407,7 +364,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '306',
       name: 'Conventional Deadlifts',
-      muscleGroup: ['Legs'], // Primarily Legs/Posterior Chain
+      muscleGroup: ['Legs','Hamstrings & Glutes'], // Primarily Legs/Posterior Chain
       equipment: 'Barbell',
       difficulty: 'Advanced',
       description: 'Total body exercise, maximizing strength in hamstrings, glutes, and back.',
@@ -417,7 +374,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '307',
       name: 'Romanian Deadlifts (RDLs)',
-      muscleGroup: ['Legs'],
+      muscleGroup: ['Legs','Hamstrings & Glutes'],
       equipment: 'Barbell or Dumbbell',
       difficulty: 'Intermediate',
       description: 'Excellent for hamstring and glute isolation, focusing on the stretch.',
@@ -427,7 +384,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '308',
       name: 'Hip Thrusts',
-      muscleGroup: ['Legs'],
+      muscleGroup: ['Legs','Hamstrings & Glutes'],
       equipment: 'Barbell, Bench',
       difficulty: 'Intermediate',
       description: 'Arguably the best exercise for glute development.',
@@ -439,7 +396,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '309',
       name: 'Leg Extensions',
-      muscleGroup: ['Legs'],
+      muscleGroup: ['Legs','Isolation'],
       equipment: 'Machine',
       difficulty: 'Beginner',
       description: 'Isolates the quadriceps for muscle definition.',
@@ -449,7 +406,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '310',
       name: 'Lying Hamstring Curls',
-      muscleGroup: ['Legs'],
+      muscleGroup: ['Legs','Isolation'],
       equipment: 'Machine',
       difficulty: 'Beginner',
       description: 'Isolates the hamstring muscles for better strength and flexibility.',
@@ -459,7 +416,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     Exercise(
       id: '311',
       name: 'Standing Calf Raises',
-      muscleGroup: ['Legs'],
+      muscleGroup: ['Legs','Isolation'],
       equipment: 'Machine or Dumbbells',
       difficulty: 'Beginner',
       description: 'Targets the gastrocnemius (outer) head of the calf.',
@@ -470,15 +427,26 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final warmUpExercises =
-        exercises.where((ex) => ex.muscleGroup == 'Warm-up').toList();
+    // ✅ FIXED: use .any() to check within the list
+    final warmUpExercises = exercises
+        .where((ex) => ex.muscleGroup
+            .any((group) => group.toLowerCase().contains('warm-up')))
+        .toList();
 
+    // ✅ FIXED: updated filtering logic for categories and difficulty
     final filteredExercises = exercises.where((ex) {
-      final matchesMuscle =
-          selectedMuscle == null || ex.muscleGroup == selectedMuscle;
-      final matchesDifficulty =
-          selectedDifficulty == null || ex.difficulty == selectedDifficulty;
-      return matchesMuscle && matchesDifficulty && ex.muscleGroup != 'Warm-up';
+      final matchesWarmup = ex.muscleGroup
+          .any((group) => group.toLowerCase().contains('warm-up'));
+      if (matchesWarmup) return false; // exclude warm-ups from main list
+
+      final matchesMuscle = selectedMuscle == null ||
+          ex.muscleGroup.contains(selectedMuscle) ||
+          ex.muscleGroup
+              .any((group) => group.toLowerCase() == selectedMuscle?.toLowerCase());
+      final matchesDifficulty = selectedDifficulty == null ||
+          ex.difficulty.toLowerCase() == selectedDifficulty!.toLowerCase();
+
+      return matchesMuscle && matchesDifficulty;
     }).toList();
 
     return Scaffold(
@@ -505,9 +473,9 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
               child: ListView(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 children: [
-                  _buildSectionTitle(' Warm-up Exercises'),
+                  _buildSectionTitle('Warm-up Exercises'),
                   _buildExerciseList(warmUpExercises),
-                  _buildSectionTitle(' Main Exercises'),
+                  _buildSectionTitle('Main Exercises'),
                   _buildExerciseList(filteredExercises),
                 ],
               ),
@@ -533,6 +501,16 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
   }
 
   Widget _buildExerciseList(List<Exercise> list) {
+    if (list.isEmpty) {
+      return Padding(
+        padding: const EdgeInsets.all(12),
+        child: Text(
+          'No exercises found',
+          style: TextStyle(color: Colors.white.withOpacity(0.7)),
+        ),
+      );
+    }
+
     return Column(
       children: list.map((ex) {
         return GestureDetector(
@@ -557,7 +535,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
             ),
             child: ListTile(
               leading: CircleAvatar(
-                backgroundImage: NetworkImage(ex.mediaUrl),
+                backgroundImage: AssetImage(ex.mediaUrl), // ✅ local asset fix
                 radius: 25,
               ),
               title: Text(
@@ -565,7 +543,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
                 style: const TextStyle(color: Colors.white, fontSize: 16),
               ),
               subtitle: Text(
-                "${ex.muscleGroup} • ${ex.difficulty}",
+                "${ex.muscleGroup.join(', ')} • ${ex.difficulty}",
                 style: TextStyle(color: Colors.white.withOpacity(0.7)),
               ),
               trailing: const Icon(Icons.arrow_forward_ios_rounded,
@@ -589,9 +567,10 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       'Back (Lats & Vertical)',
       'Back (Mid-Back & Horizontal)',
       'Biceps',
+      'Rear Deltoids',
       'Quads & Glutes',
       'Hamstrings & Glutes',
-      'Isolation', 
+      'Isolation',
     ];
 
     final difficulties = ['Beginner', 'Intermediate', 'Advanced'];
@@ -631,3 +610,5 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
     );
   }
 }
+
+
