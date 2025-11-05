@@ -50,12 +50,34 @@ flutter:
     - assets/images/sqat.gif
     - assets/images/highknee.gif
     - assets/images/armcircle.gif
-    - assets/images/jumpping.gif
-    - assets/images/triceps.gif
-    - assets/images/fit.png
     - assets/images/fitness.png
     - assets/images/exe1.jpg
     - assets/images/exe2.jpg
     - assets/images/exe3.jpg
     - assets/images/pro1.png
     - assets/images/pro2.png
+    - assets/images/profile.png
+    - assets/images/Jumping Jacks.png
+    - assets/images/Arm Circles.png
+    - assets/images/High Knees.png
+    - assets/images/Barbell Bench Press (Flat).png
+    - assets/images/Incline Dumbbell Press.png
+    - assets/images/Push-Ups (Standard).png
+    - assets/images/Cable Crossovers (Mid).png
+    - assets/images/Machine Chest Press.png
+    - assets/images/Chest Dips.png
+    - assets/images/Overhead Press (Barbell Standing).png
+    - assets/images/Dumbbell Lateral Raises.png
+    # - assets/images/Dumbbell Front Raises.png
+    - assets/images/Triceps Pushdowns (Rope).png
+    - assets/images/Skull Crushers (EZ Bar).png
+    - assets/images/Overhead Triceps Extension (Dumbbell).png
+    - assets/images/Lat Pulldowns (Wide Grip).png
+    - assets/images/Pull-Ups (Overhand).png
+    - assets/images/Chin-Ups (Underhand).png
+    - assets/images/Barbell Rows (Bent-Over).png
+    - assets/images/Single-Arm Dumbbell Row.png
+    - assets/images/Seated Cable Rows.png
+    - assets/images/Shrugs (Dumbbell).png
+
+
