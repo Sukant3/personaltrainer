@@ -68,7 +68,7 @@ flutter:
     - assets/images/Chest Dips.png
     - assets/images/Overhead Press (Barbell Standing).png
     - assets/images/Dumbbell Lateral Raises.png
-    # - assets/images/Dumbbell Front Raises.png
+    - assets/images/Front_Raises_Dumbell.png
     - assets/images/Triceps Pushdowns (Rope).png
     - assets/images/Skull Crushers (EZ Bar).png
     - assets/images/Overhead Triceps Extension (Dumbbell).png
@@ -79,5 +79,21 @@ flutter:
     - assets/images/Single-Arm Dumbbell Row.png
     - assets/images/Seated Cable Rows.png
     - assets/images/Shrugs (Dumbbell).png
+    - assets/images/Barbell_Curls.png
+    - assets/images/Hammer_Curls.png
+    - assets/images/Preacher_Curls.png
+    - assets/images/Face_Pulls.png
+    - assets/images/Dumbbell_Rear_Delt_Flyes_(Bent-Over).png
+    - assets/images/Barbell_Back_Squats.png
+    - assets/images/Front_Squats.png
+    - assets/images/Goblet_Squats.png
+    - assets/images/Lunges_(Forward).png
+    - assets/images/Bulgarian_Split_Squats.png
+    - assets/images/Conventional_Deadlifts.png
+    - assets/images/Romanian_Deadlifts_(RDLs).png
+    - assets/images/Hip_Thrusts.png
+    - assets/images/Leg_Extensions.png
+    - assets/images/Lying_Hamstring_Curls.png
+    - assets/images/Standing_Calf_Raises.png
 
 
