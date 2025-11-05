@@ -25,7 +25,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       description:
           'A great full-body warm-up exercise that increases heart rate and circulation.',
       cues: 'Jump while spreading arms and legs, then return to start position.',
-      mediaUrl: 'assets/images/jumpping.gif'
+      mediaUrl: 'assets/images/Jumping Jacks.png'
     ),
     Exercise(
       id: 'w2',
@@ -36,7 +36,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       description:
           'Loosens shoulders and improves mobility for upper-body workouts.',
       cues: 'Rotate arms forward and backward in slow, controlled circles.',
-      mediaUrl: 'assets/images/armcircle.gif',
+      mediaUrl: 'assets/images/Arm Circles.png',
     ),
     Exercise(
       id: 'w3',
@@ -47,7 +47,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       description:
           'Boosts heart rate while engaging core and legs before a workout.',
       cues: 'Run in place while lifting knees up to hip height.',
-      mediaUrl: 'assets/images/highknee.gif',
+      mediaUrl: 'assets/images/High Knees.png',
     ),
 
     // --- Main Exercises ---
@@ -59,7 +59,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Intermediate',
       description: 'A foundational movement for building overall chest mass and strength.',
       cues: 'Retract shoulder blades, lower the bar to your mid-chest, and drive up.',
-      mediaUrl: 'assets/images/barbell_bench_press.gif',
+      mediaUrl: 'assets/images/Barbell Bench Press (Flat).png',
     ),
     Exercise(
       id: '102',
@@ -69,7 +69,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Intermediate',
       description: 'Targets the upper chest (clavicular head) for shape and density.',
       cues: 'Control the descent, press dumbbells over the upper chest, and keep wrists straight.',
-      mediaUrl: 'assets/images/incline_dumbbell_press.gif',
+      mediaUrl: 'assets/images/Incline Dumbbell Press.png',
     ),
     Exercise(
       id: '103',
@@ -79,7 +79,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Beginner',
       description: 'Effective bodyweight exercise for chest, shoulders, and triceps.',
       cues: 'Maintain a straight line from head to heels. Lower until chest is near the floor.',
-      mediaUrl: 'assets/images/standard_push_up.gif',
+      mediaUrl: 'assets/images/Push-Ups (Standard).png',
     ),
     Exercise(
       id: '104',
@@ -89,7 +89,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Intermediate',
       description: 'Isolates the chest muscles, focusing on the inner contraction and stretch.',
       cues: 'Keep a slight bend in your elbows. Squeeze the cables together in front of your chest.',
-      mediaUrl: 'assets/images/mid_cable_crossover.gif',
+      mediaUrl: 'assets/images/Cable Crossovers (Mid).png',
     ),
     Exercise(
       id: '105',
@@ -99,7 +99,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Beginner',
       description: 'A stable press that allows for maximum isolation and less stabilizer involvement.',
       cues: 'Adjust the seat so the handles align with your mid-chest. Control the weight back slowly.',
-      mediaUrl: 'assets/images/machine_chest_press.gif',
+      mediaUrl: 'assets/images/Machine Chest Press.png',
     ),
     Exercise(
       id: '106',
@@ -109,7 +109,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Advanced',
       description: 'A compound bodyweight movement focusing on the lower chest and triceps.',
       cues: 'Lean torso slightly forward and flare elbows out wide to emphasize the chest.',
-      mediaUrl: 'assets/images/chest_dip.gif',
+      mediaUrl: 'assets/images/Chest Dips.png',
     ),
 
     // Shoulders
@@ -121,7 +121,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Advanced',
       description: 'Develops overall shoulder strength and stability, particularly the anterior deltoids.',
       cues: 'Keep core tight and back straight. Press the bar straight overhead, finishing with the bar slightly behind your head.',
-      mediaUrl: 'assets/images/standing_overhead_press.gif',
+      mediaUrl: 'assets/images/Overhead Press (Barbell Standing).png',
     ),
     Exercise(
       id: '108',
@@ -131,7 +131,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Intermediate',
       description: 'Isolates the medial (side) deltoids for wider shoulders.',
       cues: 'Raise the dumbbells out to the sides until parallel to the floor. Imagine pouring water out of a pitcher.',
-      mediaUrl: 'assets/images/dumbbell_lateral_raise.gif',
+      mediaUrl: 'assets/images/Dumbbell Lateral Raises.png',
     ),
     Exercise(
       id: '109',
@@ -141,7 +141,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Intermediate',
       description: 'Targets the anterior (front) deltoids.',
       cues: 'Lift the dumbbells straight out in front of you to shoulder height, alternating or simultaneously.',
-      mediaUrl: 'assets/images/dumbbell_front_raise.gif',
+      mediaUrl: 'assets/images/Front_Raises_Dumbbell.png',
     ),
 
     // Triceps
@@ -153,7 +153,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Beginner',
       description: 'A great isolation movement to target all three heads of the triceps.',
       cues: 'Keep elbows tucked tightly to your sides. Fully extend arms and squeeze the triceps at the bottom.',
-      mediaUrl: 'assets/images/rope_triceps_pushdown.gif',
+      mediaUrl: 'assets/images/Triceps Pushdowns (Rope).png',
     ),
     Exercise(
       id: '111',
@@ -163,7 +163,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Advanced',
       description: 'Effectively targets the long head of the triceps for mass.',
       cues: 'Lie on a bench and lower the bar towards your forehead (or slightly behind it) by bending only your elbows.',
-      mediaUrl: 'assets/images/ez_bar_skull_crusher.gif',
+      mediaUrl: 'assets/images/Skull Crushers (EZ Bar).png',
     ),
     Exercise(
       id: '112',
@@ -173,7 +173,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Intermediate',
       description: 'Excellent for maximizing the stretch and growth of the triceps long head.',
       cues: 'Hold a single dumbbell overhead with both hands. Lower the weight behind your head, keeping upper arms fixed.',
-      mediaUrl: 'assets/images/dumbbell_overhead_extension.gif',
+      mediaUrl: 'assets/images/Overhead Triceps Extension (Dumbbell).png',
     ),
 
     // --- PULL EXERCISES (BACK, BICEPS, REAR DELTS) ---
@@ -187,7 +187,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Beginner',
       description: 'Primary exercise for developing back width (lats).',
       cues: 'Lean back slightly. Pull the bar down to your upper chest, focusing on squeezing the lats.',
-      mediaUrl: 'assets/images/wide_grip_lat_pulldown.gif',
+      mediaUrl: 'assets/images/Lat Pulldowns (Wide Grip).png',
     ),
     Exercise(
       id: '202',
@@ -197,7 +197,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Advanced',
       description: 'The definitive bodyweight exercise for maximizing back width and relative strength.',
       cues: 'Grip wider than shoulder-width. Pull chest towards the bar, initiating the movement with your back.',
-      mediaUrl: 'assets/images/pull_up.gif',
+      mediaUrl: 'assets/images/Pull-Ups (Overhand).png',
     ),
     Exercise(
       id: '203',
@@ -207,7 +207,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Intermediate',
       description: 'Similar to pull-ups, but heavily recruits the biceps and lower lats.',
       cues: 'Use an underhand, shoulder-width grip. Pull until your chin clears the bar.',
-      mediaUrl: 'assets/images/chin_up.gif',
+      mediaUrl: 'assets/images/Chin-Ups (Underhand).png',
     ),
 
     // Back (Horizontal Pull)
@@ -219,7 +219,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Advanced',
       description: 'Builds thickness and density across the entire back, targeting the mid-back and lats.',
       cues: 'Bend over with a straight back, rowing the bar towards your belly button.',
-      mediaUrl: 'assets/images/bent_over_barbell_row.gif',
+      mediaUrl: 'assets/images/Barbell Rows (Bent-Over).png',
     ),
     Exercise(
       id: '205',
@@ -229,7 +229,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Intermediate',
       description: 'Helps correct muscle imbalances between the left and right side of the back.',
       cues: 'Keep your back parallel to the floor. Pull the dumbbell towards your hip, not your shoulder.',
-      mediaUrl: 'assets/images/single_arm_dumbbell_row.gif',
+      mediaUrl: 'assets/images/Single-Arm Dumbbell Row.png',
     ),
     Exercise(
       id: '206',
@@ -239,7 +239,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Beginner',
       description: 'Excellent for isolating the mid-back and improving posture.',
       cues: 'Keep your torso upright. Drive your elbows back and squeeze your shoulder blades together.',
-      mediaUrl: 'assets/images/seated_cable_row.gif',
+      mediaUrl: 'assets/images/Seated Cable Rows.png',
     ),
     Exercise(
       id: '207',
@@ -249,7 +249,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Beginner',
       description: 'Directly targets the trapezius muscles (traps).',
       cues: 'Keep arms straight and lift your shoulders straight up towards your ears; do not roll them.',
-      mediaUrl: 'assets/images/dumbbell_shrug.gif',
+      mediaUrl: 'assets/images/Shrugs (Dumbbell).png',
     ),
 
     // Biceps
@@ -261,7 +261,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Intermediate',
       description: 'A mass builder for the entire biceps muscle.',
       cues: 'Keep your elbows fixed at your sides. Curl the bar up without swinging your back.',
-      mediaUrl: 'assets/images/barbell_curl.gif',
+      mediaUrl: 'assets/images/Barbell_Curls.png',
     ),
     Exercise(
       id: '209',
@@ -271,7 +271,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Beginner',
       description: 'Works the biceps, brachialis (arm thickness), and forearm strength.',
       cues: 'Hold dumbbells with palms facing each other (neutral grip). Curl up towards your shoulders.',
-      mediaUrl: 'assets/images/hammer_curl.gif',
+      mediaUrl: 'assets/images/Hammer_Curls.png',
     ),
     Exercise(
       id: '210',
@@ -281,7 +281,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Intermediate',
       description: 'Forces strict form, isolating the biceps for peak development.',
       cues: 'Rest upper arms on the pad. Curl the weight up, controlling the entire range of motion.',
-      mediaUrl: 'assets/images/preacher_curl.gif',
+      mediaUrl: 'assets/images/Preacher_Curls.png',
     ),
 
     // Rear Deltoids
@@ -293,7 +293,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Intermediate',
       description: 'Crucial for shoulder health, targeting the rear delts and rotator cuff.',
       cues: 'Pull the rope towards your face, pulling your hands apart and squeezing your rear delts.',
-      mediaUrl: 'assets/images/face_pull.gif',
+      mediaUrl: 'assets/images/Face_Pulls.png',
     ),
     Exercise(
       id: '212',
@@ -303,7 +303,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Intermediate',
       description: 'Isolates the posterior (rear) deltoids.',
       cues: 'Bend over with a flat back, arms hanging. Lift the dumbbells out to the sides, keeping a slight elbow bend.',
-      mediaUrl: 'assets/images/bent_over_rear_delt_fly.gif',
+      mediaUrl: 'assets/images/Dumbbell_Rear_Delt_Flyes_(Bent-Over).png',
     ),
 
     // --- LEGS EXERCISES (QUADS, HAMSTRINGS, GLUTES, CALVES) ---
@@ -317,7 +317,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Advanced',
       description: 'The king of all exercises, building strength and size in the quads, glutes, and core.',
       cues: 'Keep chest up, descend by sitting back, and break parallel. Drive up through your heels.',
-      mediaUrl: 'assets/images/barbell_back_squat.gif',
+      mediaUrl: 'assets/images/Barbell_Back_Squats.png',
     ),
     Exercise(
       id: '302',
@@ -327,7 +327,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Advanced',
       description: 'Emphasizes the quads and core stability due to the front rack position.',
       cues: 'Maintain an upright torso. Keep elbows high and parallel to the floor.',
-      mediaUrl: 'assets/images/front_squat.gif',
+      mediaUrl: 'assets/images/Front_Squats.png',
     ),
     Exercise(
       id: '303',
@@ -337,7 +337,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Beginner',
       description: 'Great for learning squat form and improving mobility.',
       cues: 'Hold one dumbbell vertically against your chest. Squat down deep, keeping your chest up.',
-      mediaUrl: 'assets/images/goblet_squat.gif',
+      mediaUrl: 'assets/images/Goblet_Squats.png',
     ),
     Exercise(
       id: '304',
@@ -347,7 +347,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Intermediate',
       description: 'Improves unilateral leg strength, balance, and core stability.',
       cues: 'Step forward, ensure your front knee tracks over your ankle, and your back knee taps the floor gently.',
-      mediaUrl: 'assets/images/forward_lunge.gif',
+      mediaUrl: 'assets/images/Lunges_(Forward).png',
     ),
     Exercise(
       id: '305',
@@ -357,7 +357,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Advanced',
       description: 'An intense single-leg movement, maximizing quad and glute hypertrophy.',
       cues: 'Place one foot back on a bench. Drop straight down, keeping the weight over your front foot.',
-      mediaUrl: 'assets/images/bulgarian_split_squat.gif',
+      mediaUrl: 'assets/images/Bulgarian_Split_Squats.png',
     ),
 
     // Hamstrings & Glutes (Hip Hinge Movements)
@@ -369,7 +369,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Advanced',
       description: 'Total body exercise, maximizing strength in hamstrings, glutes, and back.',
       cues: 'Start with hips low and back straight. Push the floor away with your feet. Keep the bar close to your body.',
-      mediaUrl: 'assets/images/conventional_deadlift.gif',
+      mediaUrl: 'assets/images/Conventional_Deadlifts.png',
     ),
     Exercise(
       id: '307',
@@ -379,7 +379,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Intermediate',
       description: 'Excellent for hamstring and glute isolation, focusing on the stretch.',
       cues: 'Maintain a slight bend in your knees. Hinge at the hips and lower the weight until a stretch is felt in the hamstrings.',
-      mediaUrl: 'assets/images/romanian_deadlift.gif',
+      mediaUrl: 'assets/images/Romanian_Deadlifts_(RDLs).png',
     ),
     Exercise(
       id: '308',
@@ -389,7 +389,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Intermediate',
       description: 'Arguably the best exercise for glute development.',
       cues: 'Rest upper back against a bench. Drive hips up, achieving full extension and squeezing the glutes at the top.',
-      mediaUrl: 'assets/images/barbell_hip_thrust.gif',
+      mediaUrl: 'assets/images/Hip_Thrusts.png',
     ),
 
     // Isolation
@@ -401,7 +401,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Beginner',
       description: 'Isolates the quadriceps for muscle definition.',
       cues: 'Point toes slightly out (or in) to adjust quad focus. Fully extend the legs and squeeze at the top.',
-      mediaUrl: 'assets/images/leg_extension.gif',
+      mediaUrl: 'assets/images/Leg_Extensions.png',
     ),
     Exercise(
       id: '310',
@@ -411,7 +411,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Beginner',
       description: 'Isolates the hamstring muscles for better strength and flexibility.',
       cues: 'Curl the pads towards your glutes, controlling the weight on the way back up.',
-      mediaUrl: 'assets/images/lying_hamstring_curl.gif',
+      mediaUrl: 'assets/images/Lying_Hamstring_Curls.png',
     ),
     Exercise(
       id: '311',
@@ -421,7 +421,7 @@ class _ExerciseCatalogScreenState extends State<ExerciseCatalogScreen> {
       difficulty: 'Beginner',
       description: 'Targets the gastrocnemius (outer) head of the calf.',
       cues: 'Press through the ball of your foot. Achieve a full stretch at the bottom and squeeze at the top.',
-      mediaUrl: 'assets/images/standing_calf_raise.gif',
+      mediaUrl: 'assets/images/Standing_Calf_Raises.png',
     ),
   ];
 
