@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:personaltrainer/features/auth/viewmodels/auth_viewmodel.dart';
 import 'package:personaltrainer/features/auth/screens/login_screen.dart';
+import 'package:personaltrainer/features/subscription/screens/subscription_screen.dart';
 import '../../../theme/theme_notifier.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -24,17 +25,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final auth = Provider.of<AuthViewModel>(context, listen: false);
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Settings")),
+      // appBar: AppBar(title: const Text("Profile")),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 8),
+            const Text(
+              "Settings",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+            ),
+            const SizedBox(height: 20),
+
             const Text(
               "Theme Preferences",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
             const SizedBox(height: 8),
+
             RadioListTile<ThemeMode>(
               title: const Text("Light"),
               value: ThemeMode.light,
@@ -55,6 +63,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
 
             const Spacer(),
+
+            // 🟢 Subscription Button (restored)
+            ElevatedButton.icon(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const SubscriptionScreen()),
+                );
+              },
+              icon: const Icon(Icons.workspace_premium_rounded),
+              label: const Text("Subscription"),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.amber.shade600,
+                foregroundColor: Colors.black,
+                minimumSize: const Size(double.infinity, 48),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 12),
 
             // 🔒 Logout Button
             ElevatedButton.icon(

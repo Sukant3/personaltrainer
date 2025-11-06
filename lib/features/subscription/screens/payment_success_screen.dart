@@ -1,4 +1,3 @@
-// lib/features/subscription/screens/payment_success_screen.dart
 import 'package:flutter/material.dart';
 
 class PaymentSuccessScreen extends StatelessWidget {
@@ -18,17 +17,32 @@ class PaymentSuccessScreen extends StatelessWidget {
               const SizedBox(height: 20),
               const Text(
                 'Payment Successful!',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),
               ),
               const SizedBox(height: 8),
               const Text(
                 'You are now a Pro user.\nAll premium features unlocked.',
                 textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black54,
+                  fontSize: 16,
+                ),
               ),
               const SizedBox(height: 32),
               ElevatedButton.icon(
-                onPressed: () => Navigator.pushNamedAndRemoveUntil(
-                    context, '/subscription', (route) => false),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                ),
+                onPressed: () => Navigator.pop(context),
                 icon: const Icon(Icons.arrow_forward),
                 label: const Text('Continue'),
               ),
@@ -39,3 +53,7 @@ class PaymentSuccessScreen extends StatelessWidget {
     );
   }
 }
+
+
+
+
