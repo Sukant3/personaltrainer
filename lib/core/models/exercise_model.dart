@@ -1,13 +1,11 @@
-// lib/core/models/exercise_model.dart
-
 class Exercise {
   final String id;
   final String name;
-  final List<String> muscleGroup; // ✅ this stays a List<String>
+  final List<String> muscleGroup;
   final String equipment;
   final String difficulty;
   final String description;
-  final String cues;
+  final List<String> cues;
   final String mediaUrl;
   final bool isVideo;
   final int defaultReps;
@@ -23,7 +21,7 @@ class Exercise {
     required this.cues,
     required this.mediaUrl,
     this.isVideo = false,
-    this.defaultReps = 8,
+    this.defaultReps = 10,
     this.defaultRest = 60,
   });
 
@@ -31,17 +29,20 @@ class Exercise {
     return Exercise(
       id: json['id'] ?? '',
       name: json['name'] ?? '',
-      // ✅ Correctly handle muscleGroup as a list
-      muscleGroup: json['muscleGroup'] != null
-          ? List<String>.from(json['muscleGroup'])
-          : [],
+      // ✅ Fix: handle both String and List for muscleGroup
+      muscleGroup: json['muscleGroup'] is String
+          ? [json['muscleGroup']]
+          : List<String>.from(json['muscleGroup'] ?? []),
       equipment: json['equipment'] ?? '',
-      difficulty: json['difficulty'] ?? 'Beginner',
+      difficulty: json['difficulty'] ?? '',
       description: json['description'] ?? '',
-      cues: json['cues'] ?? '',
+      // ✅ Fix: handle both String and List for cues
+      cues: json['cues'] is String
+          ? [json['cues']]
+          : List<String>.from(json['cues'] ?? []),
       mediaUrl: json['mediaUrl'] ?? '',
       isVideo: json['isVideo'] ?? false,
-      defaultReps: json['defaultReps'] ?? 8,
+      defaultReps: json['defaultReps'] ?? 10,
       defaultRest: json['defaultRest'] ?? 60,
     );
   }
@@ -49,7 +50,6 @@ class Exercise {
   Map<String, dynamic> toJson() => {
         'id': id,
         'name': name,
-        // ✅ Save list properly
         'muscleGroup': muscleGroup,
         'equipment': equipment,
         'difficulty': difficulty,

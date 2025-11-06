@@ -8,19 +8,20 @@ class ExerciseListScreen extends StatelessWidget {
 
   // ✅ Sample data updated to match Exercise model
   static final List<Exercise> sampleExercises = [
-    Exercise(
-      id: 'ex_bench',
-      name: 'Barbell Bench Press',
-      muscleGroup: ['Chest'],
-      equipment: 'Barbell',
-      difficulty: 'Intermediate',
-      description: 'A compound chest exercise targeting pectorals and triceps.',
-      cues: 'Keep your feet flat, back tight, and press evenly.',
-      mediaUrl: 'https://media.giphy.com/media/3oKIPwoeGErMmaI43S/giphy.gif',
-      isVideo: false,
-      defaultReps: 8,
-      defaultRest: 90,
-    ),
+   Exercise(
+  id: 'ex_bench',
+  name: 'Barbell Bench Press',
+  muscleGroup: ['Chest'],
+  equipment: 'Barbell',
+  difficulty: 'Intermediate',
+  description: 'A compound chest exercise targeting pectorals and triceps.',
+  cues: ['Keep your feet flat', 'Keep your back tight', 'Press evenly'], // ✅ List
+  mediaUrl: 'https://media.giphy.com/media/3oKIPwoeGErMmaI43S/giphy.gif',
+  isVideo: false,
+  defaultReps: 8,
+  defaultRest: 90,
+),
+
     Exercise(
       id: 'ex_row',
       name: 'Barbell Row',
@@ -28,7 +29,7 @@ class ExerciseListScreen extends StatelessWidget {
       equipment: 'Barbell',
       difficulty: 'Intermediate',
       description: 'A pulling exercise that strengthens the lats and rhomboids.',
-      cues: 'Keep your back straight, pull towards your waist.',
+      cues: ['Keep your back straight, pull towards your waist.'],
       mediaUrl: 'https://media.giphy.com/media/l0HlPjezGYG5w3Xbq/giphy.gif',
       isVideo: false,
       defaultReps: 10,
@@ -41,7 +42,7 @@ class ExerciseListScreen extends StatelessWidget {
       equipment: 'Barbell',
       difficulty: 'Intermediate',
       description: 'Targets quads, glutes, and hamstrings.',
-      cues: 'Keep chest up, knees out, and descend under control.',
+      cues: ['Keep chest up, knees out, and descend under control.'],
       mediaUrl: 'https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif',
       isVideo: false,
       defaultReps: 8,

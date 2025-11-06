@@ -1,13 +1,11 @@
-// simple program model used by the UI
 import 'dart:convert';
-
 import '../../core/models/exercise_model.dart';
 
 class ProgramModel {
   final String id;
   String name;
   String description;
-  List<Exercise> exercises; // references exercise objects for simplicity
+  List<Exercise> exercises; // Each exercise is a full object
   String splitType; // e.g., "PPL", "Push", "Pull", "Legs", "Full"
 
   ProgramModel({
@@ -22,52 +20,34 @@ class ProgramModel {
         'id': id,
         'name': name,
         'description': description,
-        'exercises': exercises.map((e) => {
-          'id': e.id,
-          'name': e.name,
-          'muscleGroup': e.muscleGroup,
-          'equipment': e.equipment,
-          'difficulty': e.difficulty,
-          'description': e.description,
-          'cues': e.cues,
-          'mediaUrl': e.mediaUrl,
-          'isVideo': e.isVideo,
-          'defaultReps': e.defaultReps,
-          'defaultRest': e.defaultRest,
-        }).toList(),
+        'exercises': exercises.map((e) => e.toJson()).toList(),
         'splitType': splitType,
       };
 
   factory ProgramModel.fromJson(Map<String, dynamic> json) {
-    final exList = (json['exercises'] as List<dynamic>?)
-            ?.map((e) => Exercise(
-                  id: e['id'] ?? '',
-                  name: e['name'] ?? '',
-                  muscleGroup: e['muscleGroup'] ?? '',
-                  equipment: e['equipment'] ?? '',
-                  difficulty: e['difficulty'] ?? '',
-                  description: e['description'] ?? '',
-                  cues: e['cues'] ?? '',
-                  mediaUrl: e['mediaUrl'] ?? '',
-                  isVideo: e['isVideo'] ?? false,
-                  defaultReps: e['defaultReps'] ?? 8,
-                  defaultRest: e['defaultRest'] ?? 60,
-                ))
-            .toList() ??
-        [];
+    final exercisesData = json['exercises'];
+    List<Exercise> exerciseList = [];
+
+    if (exercisesData is List) {
+      exerciseList = exercisesData
+          .map((e) => Exercise.fromJson(Map<String, dynamic>.from(e)))
+          .toList();
+    }
 
     return ProgramModel(
       id: json['id'] ?? '',
       name: json['name'] ?? 'Untitled',
       description: json['description'] ?? '',
-      exercises: exList,
+      exercises: exerciseList,
       splitType: json['splitType'] ?? 'Custom',
     );
   }
 
   static List<ProgramModel> listFromJsonString(String jsonString) {
     final arr = json.decode(jsonString) as List<dynamic>;
-    return arr.map((e) => ProgramModel.fromJson(e as Map<String, dynamic>)).toList();
+    return arr
+        .map((e) => ProgramModel.fromJson(Map<String, dynamic>.from(e)))
+        .toList();
   }
 
   static String listToJsonString(List<ProgramModel> list) {

@@ -6,10 +6,9 @@ class ProgramFirestoreRepository {
   final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
 
-  // Get current user ID
   String get _uid => _auth.currentUser?.uid ?? '';
 
-  // Load programs from Firestore
+  // ✅ Load programs for the current user
   Future<List<ProgramModel>> loadPrograms() async {
     if (_uid.isEmpty) return [];
 
@@ -19,12 +18,14 @@ class ProgramFirestoreRepository {
         .collection('programs')
         .get();
 
+    if (snapshot.docs.isEmpty) return [];
+
     return snapshot.docs
         .map((doc) => ProgramModel.fromJson(doc.data()))
         .toList();
   }
 
-  // Save or update a single program
+  // ✅ Save or update one program
   Future<void> saveProgram(ProgramModel program) async {
     if (_uid.isEmpty) return;
 
@@ -33,10 +34,10 @@ class ProgramFirestoreRepository {
         .doc(_uid)
         .collection('programs')
         .doc(program.id)
-        .set(program.toJson());
+        .set(program.toJson(), SetOptions(merge: true));
   }
 
-  // Delete a program
+  // ✅ Delete one program
   Future<void> deleteProgram(String id) async {
     if (_uid.isEmpty) return;
 
@@ -48,7 +49,7 @@ class ProgramFirestoreRepository {
         .delete();
   }
 
-  // Save multiple programs (used when seeding defaults)
+  // ✅ Batch save defaults (only used for first-time users)
   Future<void> savePrograms(List<ProgramModel> programs) async {
     if (_uid.isEmpty) return;
 

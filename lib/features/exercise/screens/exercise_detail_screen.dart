@@ -18,13 +18,32 @@ class ExerciseDetailScreen extends StatelessWidget {
           children: [
             MediaViewer(url: exercise.mediaUrl, isVideo: exercise.isVideo),
             const SizedBox(height: 16),
-            Text("Description", style: Theme.of(context).textTheme.titleLarge),
-            Text(exercise.description),
+            Text(
+              "Description",
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            Text(exercise.description.isNotEmpty
+                ? exercise.description
+                : "No description provided."),
             const SizedBox(height: 16),
-            Text("Cues", style: Theme.of(context).textTheme.titleLarge),
-            Text(exercise.cues),
+            Text(
+              "Cues",
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            // ✅ FIXED: display cues properly
+            exercise.cues.isNotEmpty
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: exercise.cues
+                        .map((cue) => Text("• $cue"))
+                        .toList(),
+                  )
+                : const Text("No cues available."),
             const SizedBox(height: 16),
-            Text("Defaults", style: Theme.of(context).textTheme.titleLarge),
+            Text(
+              "Defaults",
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
             Text("Reps: ${exercise.defaultReps}"),
             Text("Rest: ${exercise.defaultRest} sec"),
           ],

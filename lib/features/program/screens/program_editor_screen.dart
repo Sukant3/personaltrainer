@@ -40,7 +40,7 @@ class _ProgramEditorScreenState extends State<ProgramEditorScreen> {
       equipment: 'Barbell',
       difficulty: 'Intermediate',
       description: '',
-      cues: '',
+      cues: ['Keep back tight', 'Press evenly'],
       mediaUrl: 'assets/images/Barbell-Bench-Press.gif',
     ),
     Exercise(
@@ -50,7 +50,7 @@ class _ProgramEditorScreenState extends State<ProgramEditorScreen> {
       equipment: 'Barbell',
       difficulty: 'Advanced',
       description: '',
-      cues: '',
+      cues: ['Keep spine neutral', 'Engage glutes'],
       mediaUrl: 'assets/images/deadlift.jpg',
     ),
     Exercise(
@@ -60,7 +60,7 @@ class _ProgramEditorScreenState extends State<ProgramEditorScreen> {
       equipment: 'Barbell',
       difficulty: 'Intermediate',
       description: '',
-      cues: '',
+      cues: ['Knees behind toes', 'Chest up'],
       mediaUrl: 'assets/images/sqat.gif',
     ),
     Exercise(
@@ -70,7 +70,7 @@ class _ProgramEditorScreenState extends State<ProgramEditorScreen> {
       equipment: 'Barbell',
       difficulty: 'Intermediate',
       description: '',
-      cues: '',
+      cues: ['Keep core tight', 'Lock out arms at top'],
       mediaUrl: 'assets/images/sholderpress.gif',
     ),
     Exercise(
@@ -80,7 +80,7 @@ class _ProgramEditorScreenState extends State<ProgramEditorScreen> {
       equipment: 'Barbell',
       difficulty: 'Intermediate',
       description: '',
-      cues: '',
+      cues: ['Keep back flat', 'Pull to lower chest'],
       mediaUrl: 'assets/images/deadlift.jpg',
     ),
   ];
@@ -135,13 +135,15 @@ class _ProgramEditorScreenState extends State<ProgramEditorScreen> {
   }
 
   void _save() {
-    _program.name =
-        _nameCtrl.text.trim().isEmpty ? 'Untitled' : _nameCtrl.text.trim();
-    _program.description = _descCtrl.text.trim();
+  _program.name = _nameCtrl.text.trim().isEmpty
+      ? 'Untitled'
+      : _nameCtrl.text.trim();
+  _program.description = _descCtrl.text.trim(); // ✅ Add this line
 
-    widget.onSave?.call(_program);
-    Navigator.pop(context);
-  }
+  widget.onSave?.call(_program);
+  Navigator.pop(context);
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -223,7 +225,7 @@ class _ProgramEditorScreenState extends State<ProgramEditorScreen> {
                       backgroundImage: AssetImage(ex.mediaUrl),
                     ),
                     title: Text(ex.name),
-                    subtitle: Text('${ex.muscleGroup} • ${ex.equipment}'),
+                    subtitle: Text('${ex.muscleGroup.join(", ")} • ${ex.equipment}'),
                     trailing: const Icon(Icons.drag_handle),
                   ),
                 );
@@ -248,7 +250,7 @@ class _ProgramEditorScreenState extends State<ProgramEditorScreen> {
                 backgroundImage: AssetImage(ex.mediaUrl),
               ),
               title: Text(ex.name),
-              subtitle: Text('${ex.muscleGroup} • ${ex.difficulty}'),
+              subtitle: Text('${ex.muscleGroup.join(", ")} • ${ex.difficulty}'),
               onTap: () {
                 Navigator.pop(context);
                 _addExercise(ex);
