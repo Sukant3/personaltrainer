@@ -94,6 +94,9 @@ flutter:
     - assets/images/Hip_Thrusts.png
     - assets/images/Leg_Extensions.png
     - assets/images/Lying_Hamstring_Curls.png
-    - assets/images/Standing_Calf_Raises.png
+    - assets/images/home_img_warmup.png
+    - assets/images/home_img_push.png
+    - assets/images/home_img_pull.png
+    - assets/images/home_img_legs.png
 
 

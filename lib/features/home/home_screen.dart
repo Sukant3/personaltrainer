@@ -101,18 +101,21 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 12),
               const _CategoryTabs(),
               const SizedBox(height: 12),
-              const _ImageCarousel(
+              _ImageCarousel(
                 images: [
                   'assets/images/exe2.jpg',
-                  'assets/images/exe1.jpg',
-                  'assets/images/exe3.jpg',
+                  'assets/images/home_img_push.png',
+                  'assets/images/home_img_pull.png',
+                  'assets/images/home_img_legs.png',
                 ],
                 titles: [
-                  "Learn the Basics of Training",
-                  "Core Strength Session",
-                  "Upper Body Power",
+                  "Warm Up",
+                  "Push",
+                  "Pull",
+                  "Legs",
                 ],
               ),
+
 
               const SizedBox(height: 36),
 
@@ -127,7 +130,7 @@ class HomeScreen extends StatelessWidget {
                 },
               ),
               const SizedBox(height: 12),
-              const _ImageCarousel(
+              _ImageCarousel(
                 images: [
                   'assets/images/pro1.png',
                   'assets/images/pro2.png',
@@ -411,53 +414,155 @@ class _CategoryTabs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: const [
-        _CategoryChip("Beginner", isActive: true),
-        SizedBox(width: 10),
-        _CategoryChip("Intermediate"),
-        SizedBox(width: 10),
-        _CategoryChip("Advanced"),
+    return Wrap(
+      spacing: 10,
+      children: [
+        _CategoryChip("Beginner", color: Color(0xFF85119F), onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => const ExerciseCatalogScreen(initialDifficulty: "Beginner"),
+            ),
+          );
+        }),
+        _CategoryChip("Intermediate", color: Color(0xFF85119F), onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => const ExerciseCatalogScreen(initialDifficulty: "Intermediate"),
+            ),
+          );
+        }),
+        _CategoryChip("Advanced", color: Color(0xFF85119F), onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => const ExerciseCatalogScreen(initialDifficulty: "Advanced"),
+            ),
+          );
+        }),
       ],
     );
   }
 }
 
-class _CategoryChip extends StatelessWidget {
-  final String text;
-  final bool isActive;
-  const _CategoryChip(this.text, {this.isActive = false});
+class _WorkoutCategoryChip extends StatelessWidget {
+  final String label;
+  final IconData icon;
+  final VoidCallback onTap;
+
+  const _WorkoutCategoryChip({
+    required this.label,
+    required this.icon,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      decoration: BoxDecoration(
-        color: isActive
-            ? const Color(0xFF85119F)
-            : colorScheme.secondaryContainer.withOpacity(0.2),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Text(
-        text,
-        style: TextStyle(
-          color: isActive
-              ? Colors.white
-              : colorScheme.onSurface.withOpacity(0.8),
-          fontWeight: FontWeight.w500,
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(22),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [Color(0xFF85119F), Color(0xFF771AAA)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          borderRadius: BorderRadius.circular(22),
+          boxShadow: [
+            BoxShadow(
+              color: isDark
+                  ? Colors.black.withOpacity(0.3)
+                  : const Color(0xFF771AAA).withOpacity(0.25),
+              blurRadius: 6,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, color: Colors.white, size: 18),
+            const SizedBox(width: 8),
+            Text(
+              label,
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+                fontSize: 14.5,
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
-// -------------------- IMAGE CAROUSEL --------------------
+
+class _CategoryChip extends StatelessWidget {
+  final String text;
+  final Color color;
+  final VoidCallback onTap;
+
+  const _CategoryChip(this.text, {required this.color, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(22),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+        decoration: BoxDecoration(
+          color: isDark ? color.withOpacity(0.25) : color.withOpacity(0.3),
+          borderRadius: BorderRadius.circular(22),
+          border: Border.all(color: color, width: 1.2),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.fitness_center_rounded, color: isDark ? Colors.white : Colors.black87, size: 16),
+            const SizedBox(width: 6),
+            Text(
+              text,
+              style: TextStyle(
+                color: isDark ? Colors.white : Colors.black87,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _ImageCarousel extends StatelessWidget {
   final List<String> images;
   final List<String> titles;
-  const _ImageCarousel({required this.images, required this.titles});
+
+  const _ImageCarousel({required this.images, required this.titles, Key? key})
+      : super(key: key);
+
+  // optional: normalize what user sees to the exact muscle-group strings used in exercise list
+  String _normalizeForCatalog(String title) {
+    final t = title.trim().toLowerCase();
+    if (t == 'warm up' || t == 'warm-up' || t == 'warmup') return 'Warm-up';
+    if (t == 'push') return 'Push';
+    if (t == 'pull') return 'Pull';
+    if (t == 'legs') return 'Legs';
+    // add any other mappings you need
+    return title; // fallback: return as-is
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -470,50 +575,65 @@ class _ImageCarousel extends StatelessWidget {
         itemCount: images.length,
         separatorBuilder: (_, __) => const SizedBox(width: 14),
         itemBuilder: (context, i) {
-          return ClipRRect(
-            borderRadius: BorderRadius.circular(18),
-            child: Stack(
-              alignment: Alignment.bottomLeft,
-              children: [
-                Image.asset(
-                  images[i],
-                  width: 250,
-                  fit: BoxFit.cover,
-                ),
-                Container(
-                  width: 250,
-                  height: 160,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Colors.black.withOpacity(0.6),
-                        Colors.transparent
-                      ],
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
-                    ),
+          final normalized = _normalizeForCatalog(titles[i]);
+          return GestureDetector(
+            onTap: () {
+              // use the correct parameter name: initialMuscle
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => ExerciseCatalogScreen(
+                    initialMuscle: normalized,
                   ),
                 ),
-                Positioned(
-                  bottom: 14,
-                  left: 14,
-                  right: 14,
-                  child: Text(
-                    titles[i],
-                    style: TextStyle(
-                      color: colorScheme.onSurface,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      shadows: const [
-                        Shadow(
-                            color: Colors.black45,
-                            offset: Offset(0, 1),
-                            blurRadius: 4)
-                      ],
+              );
+            },
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(18),
+              child: Stack(
+                alignment: Alignment.bottomLeft,
+                children: [
+                  Image.asset(
+                    images[i],
+                    width: 250,
+                    height: 160,
+                    fit: BoxFit.cover,
+                  ),
+                  Container(
+                    width: 250,
+                    height: 160,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.black.withOpacity(0.6),
+                          Colors.transparent
+                        ],
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                  Positioned(
+                    bottom: 14,
+                    left: 14,
+                    right: 14,
+                    child: Text(
+                      titles[i],
+                      style: TextStyle(
+                        color: colorScheme.onSurface,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        shadows: const [
+                          Shadow(
+                              color: Colors.black45,
+                              offset: Offset(0, 1),
+                              blurRadius: 4)
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           );
         },
@@ -521,6 +641,4 @@ class _ImageCarousel extends StatelessWidget {
     );
   }
 }
-
-
 

@@ -85,4 +85,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'personal-trainer-52788.firebasestorage.app',
     measurementId: 'G-3LLNYTJR2X',
   );
+
 }
