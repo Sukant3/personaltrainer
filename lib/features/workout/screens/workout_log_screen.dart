@@ -6,6 +6,11 @@ import '../widgets/pr_toast.dart';
 import '../widgets/rest_timer_modal.dart';
 import '../../settings/screens/settings_screen.dart';
 import 'package:personaltrainer/core/models/exercise_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+
 
 class WorkoutLogScreen extends StatefulWidget {
   final Exercise exercise;
@@ -17,8 +22,30 @@ class WorkoutLogScreen extends StatefulWidget {
 
 class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
   final List<Map<String, dynamic>> sets = [
-    {'id': 's1', 'weight': 50.0, 'reps': 10, 'rpe': 7, 'tempo': '2-0-1', 'completed': false},
-    {'id': 's2', 'weight': 50.0, 'reps': 8, 'rpe': 8, 'tempo': '2-0-1', 'completed': false},
+    {
+      'id': 's1',
+      'weight': 0.0,
+      'reps': 0,
+      'rpe': 0,
+      'tempo': '2-0-1',
+      'completed': false
+    },
+    {
+      'id': 's2',
+      'weight': 0.0,
+      'reps': 0,
+      'rpe': 0,
+      'tempo': '2-0-1',
+      'completed': false
+    },
+    {
+      'id': 's3',
+      'weight': 0.0,
+      'reps': 0,
+      'rpe': 0,
+      'tempo': '2-0-1',
+      'completed': false
+    },
   ];
 
   String? exerciseNote;
@@ -31,11 +58,26 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
         'id': id,
         'weight': 0.0,
         'reps': 0,
-        'rpe': 6,
+        'rpe': 0,
         'tempo': '2-0-1',
         'completed': false
       });
     });
+  }
+
+  void _removeSet(int index) {
+    if (sets.isNotEmpty) {
+      setState(() {
+        sets.removeAt(index);
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Set ${index + 1} removed'),
+          duration: const Duration(seconds: 2),
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
+    }
   }
 
   void _toggleComplete(int index, {bool fromSwipe = false}) {
@@ -63,12 +105,17 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
 
   void _checkForPrAndNotify(int setIndex) {
     final s = sets[setIndex];
-    final num weight = (s['weight'] is num) ? s['weight'] : num.tryParse(s['weight'].toString()) ?? 0;
-    final num reps = (s['reps'] is num) ? s['reps'] : num.tryParse(s['reps'].toString()) ?? 0;
+    final num weight = (s['weight'] is num)
+        ? s['weight']
+        : num.tryParse(s['weight'].toString()) ?? 0;
+    final num reps = (s['reps'] is num)
+        ? s['reps']
+        : num.tryParse(s['reps'].toString()) ?? 0;
     final num volume = weight * reps;
     final exerciseId = widget.exercise.id;
 
-    bests.putIfAbsent(exerciseId, () => {'maxWeight': 0, 'maxReps': 0, 'maxVolume': 0});
+    bests.putIfAbsent(
+        exerciseId, () => {'maxWeight': 0, 'maxReps': 0, 'maxVolume': 0});
     final currentBest = bests[exerciseId]!;
     final List<String> prTypes = [];
 
@@ -89,7 +136,8 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
       final snack = SnackBar(
         content: PRToast(
           title: 'New PR — ${prTypes.join('/')}!',
-          subtitle: '${widget.exercise.name}: ${weight}kg × ${reps} (${volume} vol)',
+          subtitle:
+              '${widget.exercise.name}: ${weight}kg × ${reps} (${volume} vol)',
           icon: Icons.emoji_events,
         ),
         backgroundColor: Colors.transparent,
@@ -120,6 +168,111 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
     );
   }
 
+  Future<void> _saveWorkoutLog() async {
+  try {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('User not logged in')),
+      );
+      return;
+    }
+
+    final String today = DateFormat('yyyy-MM-dd').format(DateTime.now());
+    final String exerciseName = widget.exercise.name;
+
+    final completedSets = sets.where((s) => s['completed'] == true).toList();
+
+    if (completedSets.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('No completed sets to save.')),
+      );
+      return;
+    }
+
+    // ✅ FIXED PATH
+    final docRef = FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uid)
+        .collection('workoutLogs')
+        .doc(today)
+        .collection('exercises')
+        .doc(exerciseName);
+
+    await docRef.set({
+      'exerciseName': exerciseName,
+      'date': today,
+      'sets': completedSets,
+      'note': exerciseNote ?? '',
+      'timestamp': FieldValue.serverTimestamp(),
+    });
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Workout saved for $today')),
+    );
+  } catch (e) {
+    debugPrint('Error saving workout log: $e');
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Failed to save: $e')),
+    );
+  }
+}
+
+
+//   Future<void> _saveWorkoutLog() async {
+//   try {
+//     final user = FirebaseAuth.instance.currentUser;
+
+//     if (user == null) {
+//       ScaffoldMessenger.of(context).showSnackBar(
+//         const SnackBar(content: Text('User not logged in!')),
+//       );
+//       return;
+//     }
+
+//     // Format date
+//     final String today = DateFormat('yyyy-MM-dd').format(DateTime.now());
+//     final String exerciseName = widget.exercise.name;
+
+//     // Filter completed sets
+//     final completedSets = sets.where((s) => s['completed'] == true).toList();
+
+//     if (completedSets.isEmpty) {
+//       ScaffoldMessenger.of(context).showSnackBar(
+//         const SnackBar(content: Text('No completed sets to save.')),
+//       );
+//       return;
+//     }
+
+//     // ✅ Firestore path: users/{uid}/workoutLogs/{date}/exercises/{exerciseName}
+//     final docRef = FirebaseFirestore.instance
+//         .collection('users')
+//         .doc(user.uid)
+//         .collection('workoutLogs')
+//         .doc(today)
+//         .collection('exercises')
+//         .doc(exerciseName);
+
+//     await docRef.set({
+//       'exerciseName': exerciseName,
+//       'date': today,
+//       'sets': completedSets,
+//       'note': exerciseNote ?? '',
+//       'timestamp': FieldValue.serverTimestamp(),
+//     });
+
+//     ScaffoldMessenger.of(context).showSnackBar(
+//       SnackBar(content: Text('Workout saved for $today')),
+//     );
+//   } catch (e) {
+//     debugPrint('Error saving workout log: $e');
+//     ScaffoldMessenger.of(context).showSnackBar(
+//       SnackBar(content: Text('Failed to save: $e')),
+//     );
+//   }
+// }
+
+
   @override
   Widget build(BuildContext context) {
     final ex = widget.exercise;
@@ -133,6 +286,11 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
       appBar: AppBar(
         title: Text(ex.name),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.save),
+            tooltip: 'Save Workout',
+            onPressed: _saveWorkoutLog,
+          ),
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () => Navigator.push(
@@ -220,25 +378,22 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
                                 value: s['weight'].toString(),
                                 label: 'Kg',
                                 strike: completed,
-                                onChanged: (val) => setState(() =>
-                                    s['weight'] =
-                                        double.tryParse(val) ?? s['weight'])),
+                                onChanged: (val) => setState(() => s['weight'] =
+                                    double.tryParse(val) ?? s['weight'])),
                             const SizedBox(width: 8),
                             _numberField(
                                 value: s['reps'].toString(),
                                 label: 'Reps',
                                 strike: completed,
-                                onChanged: (val) => setState(() =>
-                                    s['reps'] =
-                                        int.tryParse(val) ?? s['reps'])),
+                                onChanged: (val) => setState(() => s['reps'] =
+                                    int.tryParse(val) ?? s['reps'])),
                             const SizedBox(width: 8),
                             _numberField(
                                 value: s['rpe'].toString(),
                                 label: 'RPE',
                                 strike: completed,
                                 onChanged: (val) => setState(() =>
-                                    s['rpe'] =
-                                        int.tryParse(val) ?? s['rpe'])),
+                                    s['rpe'] = int.tryParse(val) ?? s['rpe'])),
                             const SizedBox(width: 8),
                             SizedBox(
                               width: 80,
@@ -307,9 +462,10 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
                     showModalBottomSheet(
                       context: context,
                       isScrollControlled: true,
-                       useSafeArea: true,
+                      useSafeArea: true,
                       shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(20)),
                       ),
                       builder: (_) => const RestTimerModal(initialSeconds: 60),
                     );

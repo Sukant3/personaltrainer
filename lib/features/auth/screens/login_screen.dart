@@ -3,6 +3,9 @@ import 'package:personaltrainer/features/auth/screens/signup_screen.dart';
 import 'package:personaltrainer/features/auth/viewmodels/auth_viewmodel.dart';
 import 'package:personaltrainer/features/home/home_shell.dart';
 import 'package:provider/provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -72,7 +75,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(height: 10),
                       Text(
                         "Login to continue your fitness journey",
-                        style: TextStyle(color: Colors.grey.shade400, fontSize: 15),
+                        style: TextStyle(
+                            color: Colors.grey.shade400, fontSize: 15),
                       ),
                       const SizedBox(height: 30),
                       // Email Field
@@ -84,7 +88,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           fillColor: const Color(0xFF2C2C3E),
                           labelText: "Email",
                           labelStyle: TextStyle(color: Colors.grey.shade400),
-                          prefixIcon: const Icon(Icons.email, color: Colors.purpleAccent),
+                          prefixIcon: const Icon(Icons.email,
+                              color: Colors.purpleAccent),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(14),
                             borderSide: BorderSide.none,
@@ -103,7 +108,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           fillColor: const Color(0xFF2C2C3E),
                           labelText: "Password",
                           labelStyle: TextStyle(color: Colors.grey.shade400),
-                          prefixIcon: const Icon(Icons.lock, color: Colors.purpleAccent),
+                          prefixIcon: const Icon(Icons.lock,
+                              color: Colors.purpleAccent),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(14),
                             borderSide: BorderSide.none,
@@ -133,23 +139,56 @@ class _LoginScreenState extends State<LoginScreen> {
                                       _emailController.text.trim(),
                                       _passwordController.text.trim(),
                                     );
+
+// ✅ Add this block immediately after successful sign in
+                                    final user =
+                                        FirebaseAuth.instance.currentUser;
+                                    if (user != null) {
+                                      await FirebaseFirestore.instance
+                                          .collection('users')
+                                          .doc(user.uid)
+                                          .set({
+                                        'uid': user.uid,
+                                        'email': user.email,
+                                        'createdAt':
+                                            FieldValue.serverTimestamp(),
+                                      }, SetOptions(merge: true));
+                                    }
+
                                     if (context.mounted) {
                                       Navigator.pushAndRemoveUntil(
                                         context,
-                                        MaterialPageRoute(builder: (_) => const HomeShell()),
+                                        MaterialPageRoute(
+                                            builder: (_) => const HomeShell()),
                                         (route) => false,
                                       );
                                     }
+
+                                    // await auth.signIn(
+                                    //   _emailController.text.trim(),
+                                    //   _passwordController.text.trim(),
+                                    // );
+                                    // if (context.mounted) {
+                                    //   Navigator.pushAndRemoveUntil(
+                                    //     context,
+                                    //     MaterialPageRoute(builder: (_) => const HomeShell()),
+                                    //     (route) => false,
+                                    //   );
+                                    // }
                                   } catch (e) {
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(content: Text("Login failed: ${e.toString()}")),
+                                      SnackBar(
+                                          content: Text(
+                                              "Login failed: ${e.toString()}")),
                                     );
                                   } finally {
-                                    if (mounted) setState(() => _isLoading = false);
+                                    if (mounted)
+                                      setState(() => _isLoading = false);
                                   }
                                 },
                           child: _isLoading
-                              ? const CircularProgressIndicator(color: Colors.white)
+                              ? const CircularProgressIndicator(
+                                  color: Colors.white)
                               : const Text(
                                   "Login",
                                   style: TextStyle(
@@ -173,7 +212,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             onPressed: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (_) => const SignUpScreen()),
+                                MaterialPageRoute(
+                                    builder: (_) => const SignUpScreen()),
                               );
                             },
                             child: const Text(

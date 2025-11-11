@@ -7,6 +7,7 @@ import 'package:personaltrainer/features/exercise/screens/exercise_catalog_scree
 import 'package:personaltrainer/features/program/screens/programs_screen.dart';
 import 'package:personaltrainer/features/workout/screens/streak_screen.dart';
 import 'package:personaltrainer/features/workout/screens/streak_screen.dart';
+import 'package:personaltrainer/features/workout/screens/workout_history_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -170,7 +171,7 @@ class _ProgressSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Recent Activity",
+                "My Workout",
                 style: TextStyle(
                   color: colorScheme.onSurface,
                   fontSize: 18,
@@ -181,7 +182,7 @@ class _ProgressSection extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (_) => const StreakScreen()),
+                    MaterialPageRoute(builder: (_) => const WorkoutHistoryScreen()),
                   );
                 },
                 child: Container(

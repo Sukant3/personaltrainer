@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:personaltrainer/features/auth/viewmodels/auth_viewmodel.dart';
 import 'package:provider/provider.dart';
 
+
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
