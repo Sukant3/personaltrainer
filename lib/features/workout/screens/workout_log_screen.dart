@@ -190,7 +190,6 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
       return;
     }
 
-    // ✅ FIXED PATH
     final docRef = FirebaseFirestore.instance
         .collection('users')
         .doc(user.uid)
@@ -202,7 +201,7 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
     await docRef.set({
       'exerciseName': exerciseName,
       'date': today,
-      'sets': completedSets,
+      'sets': completedSets, // ✅ changed here
       'note': exerciseNote ?? '',
       'timestamp': FieldValue.serverTimestamp(),
     });
@@ -217,61 +216,6 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
     );
   }
 }
-
-
-//   Future<void> _saveWorkoutLog() async {
-//   try {
-//     final user = FirebaseAuth.instance.currentUser;
-
-//     if (user == null) {
-//       ScaffoldMessenger.of(context).showSnackBar(
-//         const SnackBar(content: Text('User not logged in!')),
-//       );
-//       return;
-//     }
-
-//     // Format date
-//     final String today = DateFormat('yyyy-MM-dd').format(DateTime.now());
-//     final String exerciseName = widget.exercise.name;
-
-//     // Filter completed sets
-//     final completedSets = sets.where((s) => s['completed'] == true).toList();
-
-//     if (completedSets.isEmpty) {
-//       ScaffoldMessenger.of(context).showSnackBar(
-//         const SnackBar(content: Text('No completed sets to save.')),
-//       );
-//       return;
-//     }
-
-//     // ✅ Firestore path: users/{uid}/workoutLogs/{date}/exercises/{exerciseName}
-//     final docRef = FirebaseFirestore.instance
-//         .collection('users')
-//         .doc(user.uid)
-//         .collection('workoutLogs')
-//         .doc(today)
-//         .collection('exercises')
-//         .doc(exerciseName);
-
-//     await docRef.set({
-//       'exerciseName': exerciseName,
-//       'date': today,
-//       'sets': completedSets,
-//       'note': exerciseNote ?? '',
-//       'timestamp': FieldValue.serverTimestamp(),
-//     });
-
-//     ScaffoldMessenger.of(context).showSnackBar(
-//       SnackBar(content: Text('Workout saved for $today')),
-//     );
-//   } catch (e) {
-//     debugPrint('Error saving workout log: $e');
-//     ScaffoldMessenger.of(context).showSnackBar(
-//       SnackBar(content: Text('Failed to save: $e')),
-//     );
-//   }
-// }
-
 
   @override
   Widget build(BuildContext context) {
