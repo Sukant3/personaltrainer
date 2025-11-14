@@ -26,7 +26,7 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
       'id': 's1',
       'weight': 0.0,
       'reps': 0,
-      'rpe': 0,
+      // 'rpe': 0,
       'tempo': '2-0-1',
       'completed': false
     },
@@ -34,7 +34,7 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
       'id': 's2',
       'weight': 0.0,
       'reps': 0,
-      'rpe': 0,
+      // 'rpe': 0,
       'tempo': '2-0-1',
       'completed': false
     },
@@ -42,7 +42,7 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
       'id': 's3',
       'weight': 0.0,
       'reps': 0,
-      'rpe': 0,
+      // 'rpe': 0,
       'tempo': '2-0-1',
       'completed': false
     },
@@ -58,7 +58,7 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
         'id': id,
         'weight': 0.0,
         'reps': 0,
-        'rpe': 0,
+        // 'rpe': 0,
         'tempo': '2-0-1',
         'completed': false
       });
@@ -198,10 +198,19 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
         .collection('exercises')
         .doc(exerciseName);
 
+    // await docRef.set({
+    //   'exerciseName': exerciseName,
+    //   'date': today,
+    //   'sets': completedSets, // ✅ changed here
+    //   'note': exerciseNote ?? '',
+    //   'timestamp': FieldValue.serverTimestamp(),
+    // });
+
     await docRef.set({
+      'userId': user.uid, // ✅ add this line for collectionGroup query
       'exerciseName': exerciseName,
       'date': today,
-      'sets': completedSets, // ✅ changed here
+      'sets': completedSets,
       'note': exerciseNote ?? '',
       'timestamp': FieldValue.serverTimestamp(),
     });
@@ -331,13 +340,13 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
                                 strike: completed,
                                 onChanged: (val) => setState(() => s['reps'] =
                                     int.tryParse(val) ?? s['reps'])),
-                            const SizedBox(width: 8),
-                            _numberField(
-                                value: s['rpe'].toString(),
-                                label: 'RPE',
-                                strike: completed,
-                                onChanged: (val) => setState(() =>
-                                    s['rpe'] = int.tryParse(val) ?? s['rpe'])),
+                            // const SizedBox(width: 8),
+                            // _numberField(
+                            //     value: s['rpe'].toString(),
+                            //     label: 'RPE',
+                            //     strike: completed,
+                            //     onChanged: (val) => setState(() =>
+                            //         s['rpe'] = int.tryParse(val) ?? s['rpe'])),
                             const SizedBox(width: 8),
                             SizedBox(
                               width: 80,
